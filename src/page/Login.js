@@ -66,7 +66,11 @@ const Login = () => {
           </div>
 
           <div className="text-align-center mt-2">
-            지금 가입하면 10% 할인 쿠폰+웰컴 쿠폰팩 증정 <Link to="/register" className="signup-click">이메일로 가입하기</Link>{" "}
+            지금 가입하면 10% 할인 쿠폰+웰컴 쿠폰팩 증정
+          </div>
+
+          <div className="text-align-center mt-2">
+            <Link to="/register" className="signup-click">이메일로 가입하기</Link>{" "}
           </div>
 
           <div className="text-align-center mt-2">
