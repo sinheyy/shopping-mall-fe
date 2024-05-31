@@ -56,74 +56,86 @@ const RegisterPage = () => {
   };
 
   return (
-    <Container className="register-area">
-      {error && (
-        <div>
-          <Alert variant="danger" className="error-message">
-            {error}
-          </Alert>
-        </div>
-      )}
-      <Form onSubmit={register}>
-        <Form.Group className="mb-3">
-          <Form.Label>Email</Form.Label>
-          <Form.Control
-            type="email"
-            id="email"
-            placeholder="Enter email"
-            onChange={handleChange}
-            required
-          />
-        </Form.Group>
-        <Form.Group className="mb-3">
-          <Form.Label>Name</Form.Label>
-          <Form.Control
-            type="text"
-            id="name"
-            placeholder="Enter name"
-            onChange={handleChange}
-            required
-          />
-        </Form.Group>
-        <Form.Group className="mb-3">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            type="password"
-            id="password"
-            placeholder="Password"
-            onChange={handleChange}
-            required
-          />
-        </Form.Group>
-        <Form.Group className="mb-3">
-          <Form.Label>Confirm Password</Form.Label>
-          <Form.Control
-            type="password"
-            id="confirmPassword"
-            placeholder="Confirm Password"
-            onChange={handleChange}
-            required
-            isInvalid={passwordError}
-          />
-          <Form.Control.Feedback type="invalid">
-            {passwordError}
-          </Form.Control.Feedback>
-        </Form.Group>
-        <Form.Group className="mb-3">
-          <Form.Check
-            type="checkbox"
-            label="이용약관에 동의합니다"
-            id="policy"
-            onChange={handleChange}
-            isInvalid={policyError}
-            checked={formData.policy}
-          />
-        </Form.Group>
-        <Button variant="danger" type="submit">
-          회원가입
-        </Button>
-      </Form>
-    </Container>
+    <>
+      <div className='login-text'>JOIN MEMBER</div>
+      <div className='line' />
+      <Container className="register-area">
+        {error && (
+          <div>
+            <Alert variant="danger" className="error-message">
+              {error}
+            </Alert>
+          </div>
+        )}
+        <Form onSubmit={register}>
+          <Form.Group className="mb-3">
+            <Form.Label>이메일 아이디*</Form.Label>
+            <Form.Control
+              className="form-input"
+              type="email"
+              id="email"
+              placeholder="이메일"
+              onChange={handleChange}
+              required
+            />
+          </Form.Group>
+          <Form.Group className="mb-3">
+            <Form.Label>이름*</Form.Label>
+            <Form.Control
+              className="form-input"
+              type="text"
+              id="name"
+              placeholder="ex)홍길동"
+              onChange={handleChange}
+              required
+            />
+          </Form.Group>
+          <Form.Group className="mb-3">
+            <Form.Label>비밀번호*</Form.Label>
+            <Form.Control
+              className="form-input"
+              type="password"
+              id="password"
+              placeholder="비밀번호를 입력해주세요"
+              onChange={handleChange}
+              required
+            />
+          </Form.Group>
+          <Form.Group className="mb-3">
+            <Form.Label>비밀번호 확인*</Form.Label>
+            <Form.Control
+              className="form-input"
+              type="password"
+              id="confirmPassword"
+              placeholder="비밀번호를 다시 입력해주세요"
+              onChange={handleChange}
+              required
+              isInvalid={passwordError}
+            />
+            <Form.Control.Feedback type="invalid">
+              {passwordError}
+            </Form.Control.Feedback>
+          </Form.Group>
+          <Form.Group className="mb-3">
+            <Form.Check
+              type="checkbox"
+              label="이용약관에 동의합니다"
+              id="policy"
+              onChange={handleChange}
+              isInvalid={policyError}
+              checked={formData.policy}
+            />
+          </Form.Group>
+          <div className="text-align-center mt-2">
+            <Button className="signup-click" type="submit">
+              회원가입
+            </Button>
+          </div>
+
+        </Form>
+      </Container>
+    </>
+
   );
 };
 

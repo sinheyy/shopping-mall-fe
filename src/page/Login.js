@@ -28,6 +28,8 @@ const Login = () => {
   }
   return (
     <>
+      <div className='login-text'>LOGIN</div>
+      <div className='line' />
       <Container className="login-area">
         {error && (
           <div className="error-message">
@@ -36,31 +38,35 @@ const Login = () => {
         )}
         <Form className="login-form" onSubmit={loginWithEmail}>
           <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>Email address</Form.Label>
+            <Form.Label>이메일 아이디</Form.Label>
             <Form.Control
+              className="form-input"
               type="email"
-              placeholder="Enter email"
+              placeholder="이메일 아이디를 @까지 정확하게 입력하세요"
               required
               onChange={(event) => setEmail(event.target.value)}
             />
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>Password</Form.Label>
+            <Form.Label>비밀번호</Form.Label>
             <Form.Control
+              className="form-input"
               type="password"
-              placeholder="Password"
+              placeholder="비밀번호를 입력해주세요"
               required
               onChange={(event) => setPassword(event.target.value)}
             />
           </Form.Group>
-          <div className="display-space-between login-button-area">
-            <Button variant="danger" type="submit">
+
+          <div className="text-align-center mt-2">
+            <Button className='login-click' type="submit">
               Login
             </Button>
-            <div>
-              아직 계정이 없으세요?<Link to="/register">회원가입 하기</Link>{" "}
-            </div>
+          </div>
+
+          <div className="text-align-center mt-2">
+            지금 가입하면 10% 할인 쿠폰+웰컴 쿠폰팩 증정 <Link to="/register" className="signup-click">이메일로 가입하기</Link>{" "}
           </div>
 
           <div className="text-align-center mt-2">

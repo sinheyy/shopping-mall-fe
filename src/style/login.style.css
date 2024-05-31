@@ -1,15 +1,80 @@
-.login-button-area{
-    align-items: center;
+.login-button-area {
+  align-items: center;
 }
 
-.login-form{
-    width: 100%;
-      
-  }
-  .login-area{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    max-width: 550px;
-  }
+.login-form {
+  width: 100%;
+
+}
+
+.login-area {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 550px;
+  font-family: 'GmarketSansMedium';
+}
+
+.login-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+  font-family: 'SUIT-Regular';
+}
+
+.login-click {
+  width: 10rem;
+  border: none;
+  border-radius: 0px;
+  background-color: black;
+  color: white;
+  padding: 10px;
+  font-size: 1.2rem;
+  font-family: 'GmarketSansMedium';
+}
+
+.login-click:hover {
+  background-color: #FB6D33;
+}
+
+.signup-click {
+  border: 1px solid black;
+  border-radius: 0px;
+  background-color: white;
+  color: black;
+  padding: 15px;
+  font-size: 1rem;
+  font-family: 'GmarketSansMedium';
+  text-decoration: none;
+}
+
+.signup-click:hover {
+  color: #FB6D33;
+}
+
+.form-input {
+  background-color: #F2F2F2;
+  border-radius: 0px;
+}
+
+.line {
+  border-bottom: 3px solid black;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+@font-face {
+  font-family: 'GmarketSansMedium';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SUIT-Regular';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
