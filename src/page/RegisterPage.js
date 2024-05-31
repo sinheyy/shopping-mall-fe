@@ -69,7 +69,7 @@ const RegisterPage = () => {
         )}
         <Form onSubmit={register}>
           <Form.Group className="mb-3">
-            <Form.Label>이메일 아이디*</Form.Label>
+            <Form.Label>이메일 아이디<h style={{ color: "#FA5500" }}>*</h></Form.Label>
             <Form.Control
               className="form-input"
               type="email"
@@ -80,7 +80,7 @@ const RegisterPage = () => {
             />
           </Form.Group>
           <Form.Group className="mb-3">
-            <Form.Label>이름*</Form.Label>
+            <Form.Label>이름<h style={{ color:"#FA5500"}}>*</h></Form.Label>
             <Form.Control
               className="form-input"
               type="text"
@@ -91,7 +91,7 @@ const RegisterPage = () => {
             />
           </Form.Group>
           <Form.Group className="mb-3">
-            <Form.Label>비밀번호*</Form.Label>
+            <Form.Label>비밀번호<h style={{ color: "#FA5500" }}>*</h></Form.Label>
             <Form.Control
               className="form-input"
               type="password"
@@ -102,7 +102,7 @@ const RegisterPage = () => {
             />
           </Form.Group>
           <Form.Group className="mb-3">
-            <Form.Label>비밀번호 확인*</Form.Label>
+            <Form.Label>비밀번호 확인<h style={{ color: "#FA5500" }}>*</h></Form.Label>
             <Form.Control
               className="form-input"
               type="password"
