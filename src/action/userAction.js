@@ -56,6 +56,7 @@ const registerUser =
         const response = await api.post("/user", { email, name, password });
 
         if (response.status === 200) {
+          dispatch({ type: types.REGISTER_USER_SUCCESS });
           dispatch(commonUiActions.showToastMessage("회원 가입에 성공했습니다!", "success"));
           navigate("/login");
         }
