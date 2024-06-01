@@ -3,6 +3,15 @@
     font-family: 'GmarketSansMedium';
 }
 
+.error-message{
+    border-radius: 0px;
+    border: none;
+    border-bottom: 1px solid red;
+    text-align: center;
+    background-color: transparent;
+    font-size: 1rem;
+}
+
 .login-text {
     display: flex;
     justify-content: center;

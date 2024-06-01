@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { userActions } from "../action/userAction";
 import "../style/register.style.css";
-import * as types from "../constants/user.constants";
 
 const RegisterPage = () => {
   const dispatch = useDispatch();
