@@ -3,7 +3,24 @@ import * as types from "../constants/user.constants";
 import { commonUiActions } from "./commonUiAction";
 import * as commonTypes from "../constants/commonUI.constants";
 
-const loginWithToken = () => async (dispatch) => { };
+const loginWithToken = () => async (dispatch) => {
+  try {
+    dispatch({ type: types.LOGIN_WITH_TOKEN_REQUEST });
+    const response = await api.get("/user/me");
+    if (response.status === 200) {
+      console.log("responserrrr", response);
+      dispatch({ type: types.LOGIN_WITH_TOKEN_SUCCESS, payload: response.data });
+
+    }
+    else {
+      throw new Error(response.error);
+    }
+  } catch (error) {
+    dispatch({ type: types.LOGIN_WITH_TOKEN_FAIL });
+    dispatch(logout());
+  }
+};
+
 const loginWithEmail = ({ email, password }) => async (dispatch) => {
   try {
     dispatch({ type: types.LOGIN_REQUEST });
@@ -20,7 +37,14 @@ const loginWithEmail = ({ email, password }) => async (dispatch) => {
     dispatch({ type: types.LOGIN_FAIL, payload: error.message });
   }
 };
-const logout = () => async (dispatch) => { };
+
+// navbar logout 클릭시
+const logout = () => async (dispatch) => {
+  // user 정보 초기화
+  dispatch({ type: types.LOGOUT });
+  // session token 초기화
+  sessionStorage.removeItem("token");
+};
 
 const loginWithGoogle = (token) => async (dispatch) => { };
 
