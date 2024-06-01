@@ -17,12 +17,14 @@ const Login = () => {
   const loginWithEmail = (event) => {
     event.preventDefault();
     //이메일,패스워드를 가지고 백엔드로 보내기
+    dispatch(userActions.loginWithEmail({ email, password }));
   };
 
   const handleGoogleLogin = async (googleData) => {
     // 구글로 로그인 하기
   };
 
+  // user가 있으면 메인 페이지로 이동 - 이미 로그인한 유저는 로그인 페이지에 못 들어오게 막기 위함
   if (user) {
     navigate("/");
   }
@@ -61,7 +63,7 @@ const Login = () => {
 
           <div className="text-align-center mt-2">
             <Button className='login-click' type="submit">
-              Login
+              로그인
             </Button>
           </div>
 
