@@ -32,8 +32,8 @@ const Login = () => {
       <div className='line' />
       <Container className="login-area">
         {error && (
-          <div className="error-message">
-            <Alert variant="danger">{error}</Alert>
+          <div>
+            <Alert className="error-message" variant="danger">{error}</Alert>
           </div>
         )}
         <Form className="login-form" onSubmit={loginWithEmail}>

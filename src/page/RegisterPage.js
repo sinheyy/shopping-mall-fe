@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { userActions } from "../action/userAction";
 import "../style/register.style.css";
+import * as types from "../constants/user.constants";
 
 const RegisterPage = () => {
   const dispatch = useDispatch();
@@ -74,7 +75,7 @@ const RegisterPage = () => {
               className="form-input"
               type="email"
               id="email"
-              placeholder="이메일"
+              placeholder="이메일 아이디를 @까지 정확하게 입력하세요"
               onChange={handleChange}
               required
             />
