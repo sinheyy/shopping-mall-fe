@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Form, Button, Alert } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -14,6 +14,12 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const error = useSelector((state) => state.user.error);
   const loading = useSelector((state) => state.user.loading);
+
+  useEffect(() => {
+    return () => {
+      dispatch(userActions.clearError());
+    };
+  }, [dispatch]);
 
   const loginWithEmail = (event) => {
     event.preventDefault();

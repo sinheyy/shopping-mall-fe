@@ -22,6 +22,12 @@ const RegisterPage = () => {
   const error = useSelector((state) => state.user.error);
   const loading = useSelector((state) => state.user.loading);
 
+  useEffect(() => {
+    return () => {
+      dispatch(userActions.clearError());
+    };
+  }, [dispatch]);
+
   const register = (event) => {
     event.preventDefault();
     const { name, email, password, confirmPassword, policy } = formData;

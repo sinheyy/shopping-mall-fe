@@ -1,7 +1,6 @@
 import api from "../utils/api";
 import * as types from "../constants/user.constants";
 import { commonUiActions } from "./commonUiAction";
-import * as commonTypes from "../constants/commonUI.constants";
 
 const loginWithToken = () => async (dispatch) => {
   try {
@@ -46,6 +45,11 @@ const logout = () => async (dispatch) => {
   sessionStorage.removeItem("token");
 };
 
+// error message 초기화
+const clearError = () => async (dispatch) => {
+  dispatch({ type: types.CLEAR_ERROR_MESSAGE });
+};
+
 const loginWithGoogle = (token) => async (dispatch) => { };
 
 const registerUser =
@@ -75,4 +79,5 @@ export const userActions = {
   logout,
   loginWithGoogle,
   registerUser,
+  clearError,
 };

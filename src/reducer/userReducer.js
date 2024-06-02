@@ -52,6 +52,12 @@ function userReducer(state = initialState, action) {
         user: null,
       };
 
+    case types.CLEAR_ERROR_MESSAGE:
+      return {
+        ...state,
+        error: ""
+      };
+
     default:
       return state;
   }
