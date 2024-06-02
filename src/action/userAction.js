@@ -45,11 +45,6 @@ const logout = () => async (dispatch) => {
   sessionStorage.removeItem("token");
 };
 
-// error message 초기화
-const clearError = () => async (dispatch) => {
-  dispatch({ type: types.CLEAR_ERROR_MESSAGE });
-};
-
 const loginWithGoogle = (token) => async (dispatch) => { };
 
 const registerUser =
@@ -72,6 +67,11 @@ const registerUser =
         dispatch({ type: types.REGISTER_USER_FAIL, payload: error.message });
       }
     };
+
+// error message 초기화
+const clearError = () => async (dispatch) => {
+  dispatch({ type: types.CLEAR_ERROR_MESSAGE });
+};
 
 export const userActions = {
   loginWithToken,
