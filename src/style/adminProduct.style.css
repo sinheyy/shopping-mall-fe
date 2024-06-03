@@ -96,6 +96,45 @@
     justify-content: center;
 }
 
+.pagination {
+    margin-top: 2rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+
+    >* {
+        cursor: pointer;
+    }
+}
+
+.page-link {
+    transition: all 0.25s;
+    padding: 0.2rem 0.6rem;
+    border-radius: 0.3rem;
+    background-color: transparent;
+    color: black;
+    border: none;
+    font-family: 'SUIT-Regular';
+    font-size: 1.2rem;
+}
+
+.page-link.active-link {
+    background-color: #FB6D33;
+    color: white;
+    font-weight: bold;
+}
+
+.page-item :hover {
+    background-color: transparent;
+    color: #FB6D33;
+}
+
+.page-link.disabled-link {
+    background-color: transparent;
+    color: black;
+}
+
 @font-face {
     font-family: "YeojuCeramic";
     font-weight: 50;

@@ -121,12 +121,12 @@ const AdminProduct = () => {
         />
 
         <ReactPaginate
-          nextLabel="next >"
+          nextLabel=">"
           onPageChange={handlePageClick}
           pageRangeDisplayed={5}  // 몇 개 페이지 보여줄지
           pageCount={totalPageNum}   // 전체 페이지
           forcePage={searchQuery.page - 1} // 1페이지면 2임 여긴 한개씩 +1 해야함
-          previousLabel="< previous"
+          previousLabel="<"
           renderOnZeroPageCount={null}
           pageClassName="page-item"
           pageLinkClassName="page-link"
@@ -139,6 +139,9 @@ const AdminProduct = () => {
           breakLinkClassName="page-link"
           containerClassName="pagination"
           activeClassName="active"
+          activeLinkClassName="active-link"
+          disabledClassName="disabled"
+          disabledLinkClassName="disabled-link"
           className="display-center list-style-none"
         />
       </Container>
