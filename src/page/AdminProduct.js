@@ -73,12 +73,12 @@ const AdminProduct = () => {
           <SearchBox
             searchQuery={searchQuery}
             setSearchQuery={setSearchQuery}
-            placeholder="제품 이름으로 검색"
+            placeholder="상품 검색(상품 이름을 입력해주세요)"
             field="name"
           />
         </div>
-        <Button className="mt-2 mb-2" onClick={handleClickNewItem}>
-          Add New Item +
+        <Button id="basic-button" className="mt-2 mb-2" onClick={handleClickNewItem}>
+          + 상품 등록
         </Button>
 
         <ProductTable

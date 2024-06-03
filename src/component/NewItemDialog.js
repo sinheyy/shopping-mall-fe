@@ -8,6 +8,7 @@ import { CATEGORY, STATUS, SIZE, CHOICE } from "../constants/product.constants";
 import "../style/adminProduct.style.css";
 import * as types from "../constants/product.constants";
 import { commonUiActions } from "../action/commonUiAction";
+import { FontWeight } from "@cloudinary/url-gen/qualifiers";
 
 const InitialFormData = {
   name: "",
@@ -156,45 +157,45 @@ const NewItemDialog = ({ mode, showDialog, setShowDialog }) => {
   //에러나면 토스트 메세지 보여주기
 
   return (
-    <Modal show={showDialog} onHide={handleClose}>
+    <Modal show={showDialog} onHide={handleClose} className="modal">
       <Modal.Header closeButton>
         {mode === "new" ? (
-          <Modal.Title>Create New Product</Modal.Title>
+          <Modal.Title>상품 등록</Modal.Title>
         ) : (
-          <Modal.Title>Edit Product</Modal.Title>
+          <Modal.Title>상품 수정</Modal.Title>
         )}
       </Modal.Header>
 
       <Form className="form-container" onSubmit={handleSubmit}>
         <Row className="mb-3">
           <Form.Group as={Col} controlId="sku">
-            <Form.Label>Sku</Form.Label>
+            <Form.Label>SKU</Form.Label>
             <Form.Control
               onChange={handleChange}
               type="string"
-              placeholder="Enter Sku"
+              placeholder="ex)sku000"
               required
               value={formData.sku}
             />
           </Form.Group>
 
           <Form.Group as={Col} controlId="brand">
-            <Form.Label>Brand</Form.Label>
+            <Form.Label>브랜드</Form.Label>
             <Form.Control
               onChange={handleChange}
               type="string"
-              placeholder="Enter Brand"
+              placeholder="브랜드를 입력해주세요"
               required
               value={formData.brand}
             />
           </Form.Group>
 
           <Form.Group as={Col} controlId="name">
-            <Form.Label>Name</Form.Label>
+            <Form.Label>상품명</Form.Label>
             <Form.Control
               onChange={handleChange}
               type="string"
-              placeholder="Name"
+              placeholder="상품명을 입력해주세요"
               required
               value={formData.name}
             />
@@ -202,25 +203,25 @@ const NewItemDialog = ({ mode, showDialog, setShowDialog }) => {
         </Row>
 
         <Form.Group className="mb-3" controlId="description">
-          <Form.Label>Description</Form.Label>
+          <Form.Label>설명</Form.Label>
           <Form.Control
             type="string"
-            placeholder="Description"
+            placeholder="상품을 소개해주세요!"
             as="textarea"
             onChange={handleChange}
-            rows={3}
+            rows={2}
             value={formData.description}
             required
           />
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="stock">
-          <Form.Label className="mr-1">Stock</Form.Label>
+          <Form.Label className="mr-1">재고 관리</Form.Label>
           {stockError && (
-            <span className="error-message">재고를 추가해주세요</span>
+            <span className="error-message">재고를 추가해주세요!</span>
           )}
-          <Button size="sm" onClick={addStock}>
-            Add +
+          <Button id="basic-button" size="sm" onClick={addStock}>
+            + 추가
           </Button>
           <div className="mt-2">
             {stock.map((item, index) => (
@@ -234,7 +235,7 @@ const NewItemDialog = ({ mode, showDialog, setShowDialog }) => {
                     defaultValue={item[0] ? item[0].toLowerCase() : ""}
                   >
                     <option value="" disabled selected hidden>
-                      Please Choose...
+                      옵션 선택
                     </option>
                     {SIZE.map((item, index) => (
                       <option
@@ -256,14 +257,14 @@ const NewItemDialog = ({ mode, showDialog, setShowDialog }) => {
                       handleStockChange(event.target.value, index)
                     }
                     type="number"
-                    placeholder="number of stock"
+                    placeholder="재고(숫자) 입력"
                     value={item[1]}
                     required
                   />
                 </Col>
                 <Col sm={2}>
                   <Button
-                    variant="danger"
+                    className="delete-button"
                     size="sm"
                     onClick={() => deleteStock(index)}
                   >
@@ -276,33 +277,35 @@ const NewItemDialog = ({ mode, showDialog, setShowDialog }) => {
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="Image" required>
-          <Form.Label>Image</Form.Label>
+          <Form.Label>상품 대표 이미지</Form.Label>
           <CloudinaryUploadWidget uploadImage={uploadImage} imageId={"uploadedimage"} />
 
           <img
             id="uploadedimage"
             src={formData.image}
             className="upload-image mt-2"
-            alt="uploadedimage"
+            alt="미리보기"
+            style={{ height: "100px", width: "fit-content" }}
           />
 
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="Detail" required>
-          <Form.Label>Detail</Form.Label>
+          <Form.Label>상품 상세 이미지</Form.Label>
           <CloudinaryUploadWidget2 uploadImage={uploadDetail} imageId={"uploadeddetail"} />
 
           <img
             id="uploadeddetail"
             src={formData.detail}
             className="upload-image mt-2"
-            alt="uploadeddetail"
+            alt="미리보기"
+            style={{ height: "100px", width: "fit-content" }}
           ></img>
         </Form.Group>
 
         <Row className="mb-3">
           <Form.Group as={Col} controlId="price">
-            <Form.Label>Price</Form.Label>
+            <Form.Label>정상가</Form.Label>
             <Form.Control
               value={formData.price}
               required
@@ -313,7 +316,7 @@ const NewItemDialog = ({ mode, showDialog, setShowDialog }) => {
           </Form.Group>
 
           <Form.Group as={Col} controlId="salePrice">
-            <Form.Label>Sale Price</Form.Label>
+            <Form.Label>할인가</Form.Label>
             <Form.Control
               value={formData.salePrice}
               required
@@ -324,7 +327,7 @@ const NewItemDialog = ({ mode, showDialog, setShowDialog }) => {
           </Form.Group>
 
           <Form.Group as={Col} controlId="category">
-            <Form.Label>Category</Form.Label>
+            <Form.Label>분류</Form.Label>
             <Form.Control
               as="select"
               multiple
@@ -341,7 +344,7 @@ const NewItemDialog = ({ mode, showDialog, setShowDialog }) => {
           </Form.Group>
 
           <Form.Group as={Col} controlId="status">
-            <Form.Label>Status</Form.Label>
+            <Form.Label>상태</Form.Label>
             <Form.Select
               value={formData.status}
               onChange={handleChange}
@@ -356,7 +359,7 @@ const NewItemDialog = ({ mode, showDialog, setShowDialog }) => {
           </Form.Group>
         </Row>
         <Form.Group as={Col} controlId="isNew">
-          <Form.Label>New</Form.Label>
+          <Form.Label>신상 표시 여부</Form.Label>
           <Form.Select
             value={formData.isNew}
             onChange={handleChange}
@@ -370,7 +373,7 @@ const NewItemDialog = ({ mode, showDialog, setShowDialog }) => {
           </Form.Select>
         </Form.Group>
         <Form.Group as={Col} controlId="choice">
-          <Form.Label>Choice</Form.Label>
+          <Form.Label>MD's PICK 표시 여부</Form.Label>
           <Form.Select
             value={formData.choice}
             onChange={handleChange}
@@ -386,15 +389,18 @@ const NewItemDialog = ({ mode, showDialog, setShowDialog }) => {
         <Row>
 
         </Row>
-        {mode === "new" ? (
-          <Button variant="primary" type="submit">
-            Submit
-          </Button>
-        ) : (
-          <Button variant="primary" type="submit">
-            Edit
-          </Button>
-        )}
+        <div className="display-center">
+          {mode === "new" ? (
+            <Button id="basic-button" type="submit">
+              등록
+            </Button>
+          ) : (
+            <Button id="basic-button" type="submit">
+              수정
+            </Button>
+          )}
+        </div>
+
       </Form>
     </Modal>
   );

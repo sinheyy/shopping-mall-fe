@@ -36,7 +36,7 @@ class CloudinaryUploadWidget2 extends Component {
     render() {
         return (
             <Button id="upload_widget2" size="sm" className="ml-2">
-                Upload Image +
+                이미지 업로드
             </Button>
         );
     }

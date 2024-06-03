@@ -1,50 +1,88 @@
-.card-area{
-    margin-top:20px;
-}
-.admin-product-card{
-    border:1px solid red;
-
-}
-.tag{
-    margin-left:10px
+.card-area {
+    margin-top: 20px;
 }
 
-.display-flex{
-    display:flex;
+.admin-product-card {
+    border: 1px solid red;
+
+}
+
+.tag {
+    margin-left: 10px
+}
+
+.display-flex {
+    display: flex;
     align-items: center;
 }
-.locate-center{
+
+.locate-center {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
 }
-.stock{
+
+.stock {
     margin-right: 10px;
 }
 
 
-.mt-2{
+.mt-2 {
     margin-top: 20px;
 }
 
-.form-container{
-    padding:20px
+.form-container {
+    padding: 20px
 }
-.mr-1{
+
+.mr-1 {
     margin-right: 10px;
 }
 
-.upload-image{
+.upload-image {
     max-width: 458px;
-    width:100%
+    width: 100%
 }
-.display-center{
+
+.display-center {
     display: flex;
     justify-content: center;
 }
-.error-message{
+
+.error-message {
     color: red;
     font-size: 10pt;
     padding-right: 10px;
+}
+
+#basic-button {
+    font-family: 'GmarketSansMedium';
+    background-color: black;
+    border-radius: 0px;
+    border: none;
+}
+
+#basic-button:hover {
+    border-radius: 10px;
+}
+
+@font-face {
+    font-family: "YeojuCeramic";
+    font-weight: 50;
+    src: url("../fonts/YeojuCeramic.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: 'SUIT-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
 }

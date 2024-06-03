@@ -76,7 +76,7 @@ const Navbar = ({ user }) => {
       </div>
       {user && user.level === "admin" && (
         <Link to="/admin/product?page=1" className="link-area">
-          Admin page
+          <div>[관리자 페이지로 가기]</div>
         </Link>
       )}
       <div className="nav-header">
