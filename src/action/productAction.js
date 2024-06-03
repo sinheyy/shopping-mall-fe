@@ -3,7 +3,19 @@ import * as types from "../constants/product.constants";
 import { toast } from "react-toastify";
 import { commonUiActions } from "./commonUiAction";
 
-const getProductList = (query) => async (dispatch) => { };
+const getProductList = (query) => async (dispatch) => {
+  try {
+    dispatch({ type: types.PRODUCT_GET_REQUEST });
+    const response = await api.get("/product");
+    
+    dispatch({ type: types.PRODUCT_GET_SUCCESS, payload: response.data.products });
+    // console.log("Resssss11", response);
+    // console.log("Resssss", response.data.products);
+  } catch (error) {
+    dispatch({ type: types.PRODUCT_GET_FAIL, payload: error.message });
+  }
+};
+
 const getProductDetail = (id) => async (dispatch) => { };
 
 const createProduct = (formData) => async (dispatch) => {

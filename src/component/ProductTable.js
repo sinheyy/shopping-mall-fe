@@ -19,8 +19,10 @@ const ProductTable = ({ header, data, deleteItem, openEditForm }) => {
               <tr key={index}>
                 <th>{index}</th>
                 <th>{item.sku}</th>
+                <th style={{ minWidth: "100px" }}>{item.brand}</th>
                 <th style={{ minWidth: "100px" }}>{item.name}</th>
                 <th>{currencyFormat(item.price)}</th>
+                <th>{currencyFormat(item.salePrice)}</th>
                 <th>
                   {Object.keys(item.stock).map((size, index) => (
                     <div key={index}>
@@ -32,6 +34,8 @@ const ProductTable = ({ header, data, deleteItem, openEditForm }) => {
                   <img src={item.image} width={100} alt="image" />
                 </th>
                 <th>{item.status}</th>
+                <th>{item.isNew ? "O" : "X"}</th>
+                <th>{item.choice ? "O" : "X"}</th>
                 <th style={{ minWidth: "100px" }}>
                   <Button
                     size="sm"
