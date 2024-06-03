@@ -8,7 +8,6 @@ import { CATEGORY, STATUS, SIZE, CHOICE } from "../constants/product.constants";
 import "../style/adminProduct.style.css";
 import * as types from "../constants/product.constants";
 import { commonUiActions } from "../action/commonUiAction";
-import { FontWeight } from "@cloudinary/url-gen/qualifiers";
 
 const InitialFormData = {
   name: "",

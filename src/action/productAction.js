@@ -6,9 +6,11 @@ import { commonUiActions } from "./commonUiAction";
 const getProductList = (query) => async (dispatch) => {
   try {
     dispatch({ type: types.PRODUCT_GET_REQUEST });
-    const response = await api.get("/product");
-    
-    dispatch({ type: types.PRODUCT_GET_SUCCESS, payload: response.data.products });
+    const response = await api.get("/product", {
+      params: { ...query }    // 검색 조건을 보냄
+    });
+    console.log("rrrrrrrwss", response);
+    dispatch({ type: types.PRODUCT_GET_SUCCESS, payload: response.data.data });
     // console.log("Resssss11", response);
     // console.log("Resssss", response.data.products);
   } catch (error) {
