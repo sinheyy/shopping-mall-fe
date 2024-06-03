@@ -24,16 +24,16 @@ const AdminProduct = () => {
   const [mode, setMode] = useState("new");
   const tableHeader = [
     "#",
-    "Sku",
-    "Brand",
-    "Name",
-    "Price",
-    "SalePrice",
-    "Stock",
-    "Image",
-    "Status",
-    "New",
-    "Choice",
+    "SKU",
+    "브랜드",
+    "상품명",
+    "정상가",
+    "할인가",
+    "재고",
+    "상품 이미지",
+    "상태",
+    "NEW",
+    "MD's PICK",
     "",
   ];
 

@@ -1,44 +1,71 @@
-.ml-2{
+.ml-2 {
     margin-left: 20px;
 }
-.space-between{
+
+.space-between {
     justify-content: space-between;
 }
-.mb-2{
+
+.mb-2 {
     margin-bottom: 20px !important;
 }
 
-.mt-2{
+.mt-2 {
     margin-top: 20px !important;
 }
-.list-style-none{
+
+.list-style-none {
     list-style: none;
- }
- .display-center{
+}
+
+.display-center {
     display: flex;
     justify-content: center;
- }
- .display-space-between{
+}
+
+.display-space-between {
     display: flex;
     justify-content: space-between;
- }
- .display-flex{
+}
+
+.display-flex {
     display: flex;
-  }
-.display-none{
+}
+
+.display-none {
     display: none;
 }
 
-.overflow-x{
-    overflow-x:auto;
+.overflow-x {
+    overflow-x: auto;
     width: 100%;
-
+    font-family: 'SUIT-Regular';
 }
 
 .overflow-x::-webkit-scrollbar {
     display: none;
-  }
+}
 
-  .vh-100{
-    height:100vh;
-  }
+.vh-100 {
+    height: 100vh;
+}
+
+@font-face {
+    font-family: "YeojuCeramic";
+    font-weight: 50;
+    src: url("../fonts/YeojuCeramic.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: 'SUIT-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}

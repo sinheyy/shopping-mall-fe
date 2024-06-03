@@ -67,6 +67,30 @@
     border-radius: 10px;
 }
 
+.delete-button {
+    background-color: #FB6D33;
+    border-radius: 0px;
+    border: none;
+    margin-right: 10px;
+}
+
+.delete-button:hover {
+    background-color: #FB6D33;
+    color: black;
+}
+
+.edit-button {
+    background-color: black;
+    border-radius: 0px;
+    border: none;
+    margin-right: 5px;
+}
+
+.edit-button:hover {
+    background-color: black;
+    color: #FB6D33;
+}
+
 @font-face {
     font-family: "YeojuCeramic";
     font-weight: 50;
