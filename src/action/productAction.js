@@ -10,7 +10,7 @@ const getProductList = (query) => async (dispatch) => {
       params: { ...query }    // 검색 조건을 보냄
     });
     console.log("rrrrrrrwss", response);
-    dispatch({ type: types.PRODUCT_GET_SUCCESS, payload: response.data.data });
+    dispatch({ type: types.PRODUCT_GET_SUCCESS, payload: response.data });
     // console.log("Resssss11", response);
     // console.log("Resssss", response.data.products);
   } catch (error) {

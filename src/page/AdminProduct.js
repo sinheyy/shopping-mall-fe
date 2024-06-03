@@ -10,10 +10,11 @@ import { useSearchParams, useNavigate } from "react-router-dom";
 import { commonUiActions } from "../action/commonUiAction";
 import ProductTable from "../component/ProductTable";
 import ClipLoader from "react-spinners/ClipLoader";
+import "../style/adminProduct.style.css";
 
 const AdminProduct = () => {
   const navigate = useNavigate();
-  const productList = useSelector((state) => state.product.productList);
+  const { productList, totalPageNum } = useSelector((state) => state.product);
   const loading = useSelector((state) => state.user.loading);
   const [query, setQuery] = useSearchParams();
   const dispatch = useDispatch();
@@ -76,7 +77,9 @@ const AdminProduct = () => {
   };
 
   const handlePageClick = ({ selected }) => {
-    //  쿼리에 페이지값 바꿔주기
+    //  쿼리에 페이지값 바꿔주기 - 실제페이지는 selected + 1
+    //console.log("selected", selected);
+    setSearchQuery({ ...searchQuery, page: selected + 1 });
   };
 
   // searchbox에서 검색어를 읽어옴 -> 엔터를 치면 -> searchQuery 객체가 업데이트 {name:스트레이트 팬츠}
@@ -97,7 +100,7 @@ const AdminProduct = () => {
           + 상품 등록
         </Button>
 
-        {loading ?
+        {/* {loading ?
           (<div className='loading'><ClipLoader color="#FB6D33" loading={loading} size={100} /></div>)
           :
           (
@@ -108,14 +111,21 @@ const AdminProduct = () => {
               openEditForm={openEditForm}
             />
           )
-        }
+        } */}
+
+        <ProductTable
+          header={tableHeader}
+          data={productList}
+          deleteItem={deleteItem}
+          openEditForm={openEditForm}
+        />
 
         <ReactPaginate
           nextLabel="next >"
           onPageChange={handlePageClick}
-          pageRangeDisplayed={5}
-          pageCount={100}
-          forcePage={2} // 1페이지면 2임 여긴 한개씩 +1 해야함
+          pageRangeDisplayed={5}  // 몇 개 페이지 보여줄지
+          pageCount={totalPageNum}   // 전체 페이지
+          forcePage={searchQuery.page - 1} // 1페이지면 2임 여긴 한개씩 +1 해야함
           previousLabel="< previous"
           renderOnZeroPageCount={null}
           pageClassName="page-item"
