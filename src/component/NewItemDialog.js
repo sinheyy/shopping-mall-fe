@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Form, Modal, Button, Row, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import CloudinaryUploadWidget from "../utils/CloudinaryUploadWidget";
+import CloudinaryUploadWidget2 from "../utils/CloudinaryUploadWidget2";
 import { productActions } from "../action/productAction";
 import { CATEGORY, STATUS, SIZE, CHOICE } from "../constants/product.constants";
 import "../style/adminProduct.style.css";
@@ -22,6 +23,7 @@ const InitialFormData = {
   detail: "",
   choice: "false",
   isNew: "false",
+  option: []
 };
 
 const NewItemDialog = ({ mode, showDialog, setShowDialog }) => {
@@ -38,16 +40,42 @@ const NewItemDialog = ({ mode, showDialog, setShowDialog }) => {
 
   const handleClose = () => {
     //모든걸 초기화시키고;
+    const newFormData = { ...InitialFormData };
+    setFormData(newFormData);
+    setStock([]);
+
+    // console.log("ffff", formData);
+
     // 다이얼로그 닫아주기
+    setShowDialog(false);
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    console.log("formdata ????", formData);
+    console.log("formdata", stock);
+    // [["s", "3"], ["m", 4]] -> {s : 3, m : 4} array를 객체로
+
     //재고를 입력했는지 확인, 아니면 에러
+    if (stock.length == 0) {
+      return setStockError(true);
+    }
+
     // 재고를 배열에서 객체로 바꿔주기
     // [['M',2]] 에서 {M:2}로
+    const totalStock = stock.reduce((total, item) => {
+      return { ...total, [item[0]]: parseInt(item[1]) }
+    }, {});
+
+    console.log("totalstock", totalStock);
+
     if (mode === "new") {
       //새 상품 만들기
+      dispatch(productActions.createProduct({ ...formData, stock: totalStock }));
+      const newFormData = { ...InitialFormData };
+      setFormData(newFormData);
+      setStock([]);
+      setShowDialog(false);
     } else {
       // 상품 수정하기
     }
@@ -86,6 +114,7 @@ const NewItemDialog = ({ mode, showDialog, setShowDialog }) => {
   };
 
   const onHandleCategory = (event) => {
+    // 카테고리가 이미 추가되어 있으면 제거
     if (formData.category.includes(event.target.value)) {
       const newCategory = formData.category.filter(
         (item) => item !== event.target.value
@@ -94,7 +123,9 @@ const NewItemDialog = ({ mode, showDialog, setShowDialog }) => {
         ...formData,
         category: [...newCategory],
       });
-    } else {
+    }
+    // 아니면 새로 추가
+    else {
       setFormData({
         ...formData,
         category: [...formData.category, event.target.value],
@@ -104,6 +135,12 @@ const NewItemDialog = ({ mode, showDialog, setShowDialog }) => {
 
   const uploadImage = (url) => {
     //이미지 업로드
+    setFormData({ ...formData, image: url });
+  };
+
+  const uploadDetail = (url) => {
+    //이미지 업로드
+    setFormData({ ...formData, detail: url });
   };
 
   useEffect(() => {
@@ -240,25 +277,26 @@ const NewItemDialog = ({ mode, showDialog, setShowDialog }) => {
 
         <Form.Group className="mb-3" controlId="Image" required>
           <Form.Label>Image</Form.Label>
-          <CloudinaryUploadWidget uploadImage={uploadImage} />
+          <CloudinaryUploadWidget uploadImage={uploadImage} imageId={"uploadedimage"} />
 
           <img
             id="uploadedimage"
             src={formData.image}
             className="upload-image mt-2"
             alt="uploadedimage"
-          ></img>
+          />
+
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="Detail" required>
           <Form.Label>Detail</Form.Label>
-          <CloudinaryUploadWidget uploadImage={uploadImage} />
+          <CloudinaryUploadWidget2 uploadImage={uploadDetail} imageId={"uploadeddetail"} />
 
           <img
             id="uploadeddetail"
             src={formData.detail}
             className="upload-image mt-2"
-            alt="uploadedimage"
+            alt="uploadeddetail"
           ></img>
         </Form.Group>
 

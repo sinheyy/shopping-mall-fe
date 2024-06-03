@@ -17,9 +17,10 @@ class CloudinaryUploadWidget extends Component {
         if (!error && result && result.event === "success") {
           console.log("Done! Here is the image info: ", result.info);
           document
-            .getElementById("uploadedimage")
+            .getElementById(this.props.imageId)
             .setAttribute("src", result.info.secure_url);
           this.props.uploadImage(result.info.secure_url);
+
         }
       } //https://cloudinary.com/documentation/react_image_and_video_upload
     );
