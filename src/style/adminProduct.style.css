@@ -91,6 +91,11 @@
     color: #FB6D33;
 }
 
+.loading {
+    display: flex;
+    justify-content: center;
+}
+
 @font-face {
     font-family: "YeojuCeramic";
     font-weight: 50;

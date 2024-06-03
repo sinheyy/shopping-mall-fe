@@ -9,10 +9,12 @@ import ReactPaginate from "react-paginate";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import { commonUiActions } from "../action/commonUiAction";
 import ProductTable from "../component/ProductTable";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const AdminProduct = () => {
   const navigate = useNavigate();
   const productList = useSelector((state) => state.product.productList);
+  const loading = useSelector((state) => state.user.loading);
   const [query, setQuery] = useSearchParams();
   const dispatch = useDispatch();
   const [showDialog, setShowDialog] = useState(false);
@@ -81,12 +83,19 @@ const AdminProduct = () => {
           + 상품 등록
         </Button>
 
-        <ProductTable
-          header={tableHeader}
-          data={productList}
-          deleteItem={deleteItem}
-          openEditForm={openEditForm}
-        />
+        {loading ?
+          (<div className='loading'><ClipLoader color="#FB6D33" loading={loading} size={100} /></div>)
+          :
+          (
+            <ProductTable
+              header={tableHeader}
+              data={productList}
+              deleteItem={deleteItem}
+              openEditForm={openEditForm}
+            />
+          )
+        }
+
         <ReactPaginate
           nextLabel="next >"
           onPageChange={handlePageClick}
