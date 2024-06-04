@@ -13,6 +13,8 @@ const ProductAll = () => {
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.user.loading);
   const error = useSelector((state) => state.product.error);
+  const searchKeyword = useSelector((state) => state.product.searchKeyword);
+  console.log("seeearch", searchKeyword);
   const { productList, totalPageNum } = useSelector((state) => state.product);
   const [query, setQuery] = useSearchParams();
   const [searchQuery, setSearchQuery] = useState({
@@ -24,15 +26,13 @@ const ProductAll = () => {
   //상품리스트 가져오기 (url쿼리 맞춰서)
   useEffect(() => {
     dispatch(productActions.getProductList({ ...searchQuery }));
-    if (query.get("name") !== "")
-      setSearchQuery({ ...searchQuery, name: query.get("name") });
   }, [query])
 
   useEffect(() => {
     //검색어나 페이지가 바뀌면 url바꿔주기 (검색어또는 페이지가 바뀜 => url 바꿔줌=> url쿼리 읽어옴=> 이 쿼리값 맞춰서  상품리스트 가져오기)
-    // if (searchQuery.name === "") {
-    //   delete searchQuery.name;
-    // }
+    if (searchQuery.name === "") {
+      delete searchQuery.name;
+    }
 
     // URLSearchParams - 객체를 쿼리로 만들어줌
     const params = new URLSearchParams(searchQuery);
@@ -42,6 +42,12 @@ const ProductAll = () => {
     navigate("?" + query);
 
   }, [searchQuery]);
+
+  useEffect(() => {
+    console.log("seeearch2222", searchKeyword);
+    setSearchQuery({ ...searchQuery, name: searchKeyword });
+
+  }, [searchKeyword])
 
 
   const handlePageClick = ({ selected }) => {

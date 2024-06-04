@@ -3,7 +3,8 @@ const initialState = {
   loading: false,
   error: "",
   productList: [],
-  totalPageNum: 1
+  totalPageNum: 1,
+  searchKeyword: ""
 };
 
 function productReducer(state = initialState, action) {
@@ -19,6 +20,9 @@ function productReducer(state = initialState, action) {
     case types.PRODUCT_CREATE_FAIL:
     case types.PRODUCT_GET_FAIL:
       return { ...state, loading: false, error: payload };
+    case types.SET_SEARCH_KEYWORD:
+      console.log("paydloasdfs", payload);
+      return { ...state, searchKeyword: payload };
     default:
       return state;
   }

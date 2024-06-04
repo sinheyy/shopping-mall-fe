@@ -4,6 +4,7 @@ import { faUser } from "@fortawesome/free-regular-svg-icons";
 import {
   faBars,
   faBox,
+  faCropSimple,
   faSearch,
   faShoppingBag,
 } from "@fortawesome/free-solid-svg-icons";
@@ -11,6 +12,7 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { userActions } from "../action/userAction";
+import * as types from "../constants/product.constants";
 
 const Navbar = ({ user }) => {
   const dispatch = useDispatch();
@@ -32,9 +34,16 @@ const Navbar = ({ user }) => {
   let navigate = useNavigate();
   const onCheckEnter = (event) => {
     if (event.key === "Enter") {
+      
+
       if (event.target.value === "") {
+        dispatch({ type: types.SET_SEARCH_KEYWORD, payload: "" });
         return navigate("/");
       }
+
+      let searchKeyword = event.target.value;
+      dispatch({ type: types.SET_SEARCH_KEYWORD, payload: searchKeyword });
+      console.log("tt", searchKeyword);
       navigate(`?name=${event.target.value}`);
     }
   };
@@ -102,9 +111,8 @@ const Navbar = ({ user }) => {
             <div onClick={() => navigate("/cart")} className="nav-icon">
               <FontAwesomeIcon icon={faShoppingBag} />
               {!isMobile && (
-                <span style={{ cursor: "pointer" }}>{`CART(${
-                  cartItemCount || 0
-                })`}</span>
+                <span style={{ cursor: "pointer" }}>{`CART(${cartItemCount || 0
+                  })`}</span>
               )}
             </div>
             <div
@@ -139,7 +147,7 @@ const Navbar = ({ user }) => {
         )}
 
       </div>
-      
+
       <div className="nav-menu-area">
         <ul className="menu">
           {menuList.map((menu, index) => (
@@ -148,7 +156,7 @@ const Navbar = ({ user }) => {
             </li>
           ))}
         </ul>
-        
+
       </div>
     </div>
   );
