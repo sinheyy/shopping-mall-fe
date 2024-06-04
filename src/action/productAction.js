@@ -28,6 +28,7 @@ const createProduct = (formData) => async (dispatch) => {
     if (response.status === 200) {
       dispatch({ type: types.PRODUCT_CREATE_SUCCESS });
       dispatch(commonUiActions.showToastMessage("상품이 추가되었습니다!", "success"));
+      dispatch(getProductList({ page: 1, name: "" }));
     }
     else {
       throw new Error(response.error);
@@ -47,6 +48,7 @@ const editProduct = (formData, id) => async (dispatch) => {
     if (response.status === 200) {
       dispatch({ type: types.PRODUCT_EDIT_SUCCESS, payload: response.data.data });
       dispatch(commonUiActions.showToastMessage("상품 정보가 수정되었습니다!", "success"));
+      dispatch(getProductList({ page: 1, name: "" }));
     }
     else {
       throw new Error(response.error);
