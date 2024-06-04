@@ -100,7 +100,7 @@ const AdminProduct = () => {
           + 상품 등록
         </Button>
 
-        {/* {loading ?
+        {loading ?
           (<div className='loading'><ClipLoader color="#FB6D33" loading={loading} size={100} /></div>)
           :
           (
@@ -111,14 +111,14 @@ const AdminProduct = () => {
               openEditForm={openEditForm}
             />
           )
-        } */}
+        }
 
-        <ProductTable
+        {/* <ProductTable
           header={tableHeader}
           data={productList}
           deleteItem={deleteItem}
           openEditForm={openEditForm}
-        />
+        /> */}
 
         <ReactPaginate
           nextLabel=">"
