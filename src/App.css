@@ -123,7 +123,11 @@ body {
 
 .card {
   border: none !important;
+  background-clip: border-box;
   margin-bottom: 10px;
+  word-wrap: break-word;
+  font-family: 'GmarketSansMedium';
+  font-size: 0.8rem;
 }
 
 .choice {
@@ -369,6 +373,69 @@ body {
 
 .modal {
   font-family: 'SUIT-Regular';
+}
+
+/* product card */
+
+.brandname {
+  font-family: 'SUIT-Regular';
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+.pickbox {
+  background-color: white;
+  width: fit-content;
+
+  padding: 2px;
+  font-size: 0.45rem;
+  font-family: 'GmarketSansMedium';
+}
+
+.pickbox_switched {
+  background-color: #FB6D33;
+  width: fit-content;
+  color: white;
+  font-family: 'GmarketSansMedium';
+}
+
+.nametext {
+  color: #555555;
+  margin: 3px;
+  font-family: 'GmarketSansMedium';
+}
+
+.price {
+  color: #848484;
+  text-decoration: line-through;
+  font-size: 0.6rem;
+  font-family: 'GmarketSansMedium';
+}
+
+.saleprice {
+  color: black;
+  font-size: 0.9rem;
+  font-family: 'GmarketSansMedium';
+}
+
+.saleper {
+  color: #FA5500;
+  font-size: 0.9rem;
+  font-family: 'GmarketSansMedium';
+}
+
+@keyframes blink-effect {
+  50% {
+    opacity: 0;
+  }
+}
+
+.new-text {
+  width: fit-content;
+  background-color: black;
+  color: white;
+  animation: blink-effect 1s step-end infinite;
+  font-size: 0.5rem;
 }
 
 @font-face {
