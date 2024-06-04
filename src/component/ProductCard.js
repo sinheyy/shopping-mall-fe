@@ -20,7 +20,7 @@ const ProductCard = ({ product }) => {
       />
       <div className="brandname">{product.brand}</div>
       <div className={`pickbox${pickIsTrue ? "_switched" : ""}`}>{product?.choice == true ? "[MD PICK]" : ""}</div>
-      <div className='nametext'>{product.name}<h className='new-text'>{product?.isNew == true ? "NEW" : ""}</h></div>
+      <div className='nametext'>{product.name}<h5 className='new-text'>{product?.isNew == true ? "NEW" : ""}</h5></div>
       <div className={`price`}>₩{product.price}</div>
       <div className='saleprice'><b className={'saleper'}>{Math.round((product.price - product.salePrice) / product.price * 100)}%</b> ₩{product.salePrice}</div>
 

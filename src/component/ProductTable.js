@@ -45,7 +45,7 @@ const ProductTable = ({ header, data, deleteItem, openEditForm }) => {
                     -
                   </Button>
                   <Button className="edit-button" size="sm" onClick={() => openEditForm(item)}>
-                    Edit
+                    수정
                   </Button>
                 </th>
               </tr>
