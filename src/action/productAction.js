@@ -39,7 +39,20 @@ const createProduct = (formData) => async (dispatch) => {
   }
 };
 
-const deleteProduct = (id) => async (dispatch) => { };
+const deleteProduct = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: types.PRODUCT_DELETE_REQUEST });
+    const response = await api.delete(`/product/${id}`);
+
+    dispatch({ type: types.PRODUCT_DELETE_SUCCESS });
+    dispatch(commonUiActions.showToastMessage("상품이 성공적으로 삭제되었습니다.", "success"));
+    dispatch(getProductList({ page: 1 }));
+
+  } catch (error) {
+    dispatch({ type: types.PRODUCT_DELETE_FAIL, payload: error.message });
+    dispatch(commonUiActions.showToastMessage(error.message, "error"));
+  }
+};
 
 const editProduct = (formData, id) => async (dispatch) => {
   try {
