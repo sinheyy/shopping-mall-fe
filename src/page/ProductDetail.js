@@ -82,7 +82,7 @@ const ProductDetail = () => {
                 id="dropdown-basic"
                 align="start"
               >
-                {size === "" ? "사이즈 선택" : size.toUpperCase()}
+                {size === "" ? "옵션 선택" : size.toUpperCase()}
               </Dropdown.Toggle>
 
               <Dropdown.Menu className="size-drop-down">
