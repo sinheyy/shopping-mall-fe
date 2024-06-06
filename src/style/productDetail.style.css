@@ -95,6 +95,49 @@
     margin-bottom: 15px;
 }
 
+.add-button {
+    border: none;
+    background-color: black;
+    color: white;
+    font-size: 1.2rem;
+    font-family: 'GmarketSansMedium';
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.add-button:hover {
+    background-color: white;
+    color: black;
+}
+
+.drop-down {
+    border: none;
+    background-color: transparent;
+    color: black;
+    font-size: 1.2rem;
+    font-family: 'GmarketSansMedium';
+}
+
+#dropdown-basic {
+    border-radius: 0px;
+}
+
+.size-drop-down {
+    font-family: 'GmarketSansMedium';
+    background-color: white;
+}
+
+.size-drop-down-abled:hover {
+    color: #FA5500;
+    background-color: white;
+}
+
+.size-drop-down-disabled{
+    text-decoration: line-through;
+}
+
 @font-face {
     font-family: "YeojuCeramic";
     font-weight: 50;

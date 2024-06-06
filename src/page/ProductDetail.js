@@ -70,6 +70,7 @@ const ProductDetail = () => {
             <div className='detail-line' />
 
             <Dropdown
+              variant="none"
               className="drop-down size-drop-down"
               title={size}
               align="start"
@@ -85,15 +86,21 @@ const ProductDetail = () => {
               </Dropdown.Toggle>
 
               <Dropdown.Menu className="size-drop-down">
-                <Dropdown.Item>M</Dropdown.Item>
+                {Object.keys(selectedProduct.stock).map((size) => [size, selectedProduct.stock[size]]).map((item, index) => (
+                  item[1] > 0 ?
+                    (<Dropdown.Item className="size-drop-down-abled">{item[0]}</Dropdown.Item>)
+                    :
+                    (<Dropdown.Item className="size-drop-down-disabled" disabled>{item[0]}</Dropdown.Item>)
+
+                ))}
               </Dropdown.Menu>
             </Dropdown>
             <div className="warning-message">
               {sizeError && "사이즈를 선택해주세요."}
             </div>
-            <Button variant="dark" className="add-button" onClick={addItemToCart}>
+            <button className="add-button" onClick={addItemToCart}>
               추가
-            </Button>
+            </button>
           </Col>
         </Row>
         <Row>
