@@ -18,7 +18,17 @@ const getProductList = (query) => async (dispatch) => {
   }
 };
 
-const getProductDetail = (id) => async (dispatch) => { };
+const getProductDetail = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: types.GET_PRODUCT_DETAIL_REQUEST });
+    const response = await api.get(`/product/${id}`);
+
+    dispatch({ type: types.GET_PRODUCT_DETAIL_SUCCESS, payload: response.data.data });
+  } catch (error) {
+    dispatch({ type: types.GET_PRODUCT_DETAIL_FAIL, payload: error.message });
+    dispatch(commonUiActions.showToastMessage(error.message, "error"));
+  }
+};
 
 const createProduct = (formData) => async (dispatch) => {
   try {
