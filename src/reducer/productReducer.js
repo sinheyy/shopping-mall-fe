@@ -30,7 +30,6 @@ function productReducer(state = initialState, action) {
     case types.SET_SEARCH_KEYWORD:
       return { ...state, searchKeyword: payload };
     case types.SET_SELECTED_PRODUCT:
-      console.log("ppp", payload);
       return { ...state, selectedProduct: payload };
     default:
       return state;

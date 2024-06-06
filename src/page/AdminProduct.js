@@ -68,10 +68,11 @@ const AdminProduct = () => {
   const openEditForm = (product) => {
     //edit모드로 설정하고
     setMode("edit");
-    console.log("product, : ", product);
+    // console.log("product, : ", product);
 
     // 선택된 아이템 표시하고 수정다이얼로그 열어주기
     dispatch({ type: types.SET_SELECTED_PRODUCT, payload: product });
+    // console.log("dispatch 완료, : ", product);
     setShowDialog(true);
   };
 

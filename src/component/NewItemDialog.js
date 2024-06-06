@@ -145,8 +145,9 @@ const NewItemDialog = ({ mode, showDialog, setShowDialog }) => {
     if (showDialog) {
       if (mode === "edit") {
         // 선택된 데이터값 불러오기 (재고 형태 객체에서 어레이로 바꾸기)
+        // console.log("tttttttttt selectedProduct : ", selectedProduct);
         setFormData(selectedProduct);
-        console.log("selectedProduct", selectedProduct);
+        // console.log("selectedProduct-keys", selectedProduct.stock);
         const stockArray = Object.keys(selectedProduct.stock).map((size) => [size, selectedProduct.stock[size]]);  // Object.keys하면 [s, m] - array로 key 값만 나옴
         setStock(stockArray);
       } else {
@@ -156,6 +157,10 @@ const NewItemDialog = ({ mode, showDialog, setShowDialog }) => {
       }
     }
   }, [showDialog]);
+
+  useEffect(()=>{
+    console.log("selectedProduct 바뀜! 여긴 뉴아이템다이알로그", selectedProduct);
+  }, [selectedProduct]);
 
   //에러나면 토스트 메세지 보여주기
 
@@ -178,7 +183,7 @@ const NewItemDialog = ({ mode, showDialog, setShowDialog }) => {
               type="string"
               placeholder="ex)sku000"
               required
-              value={formData.sku}
+              value={formData?.sku}
             />
           </Form.Group>
 
@@ -189,7 +194,7 @@ const NewItemDialog = ({ mode, showDialog, setShowDialog }) => {
               type="string"
               placeholder="브랜드를 입력해주세요"
               required
-              value={formData.brand}
+              value={formData?.brand}
             />
           </Form.Group>
 
@@ -200,7 +205,7 @@ const NewItemDialog = ({ mode, showDialog, setShowDialog }) => {
               type="string"
               placeholder="상품명을 입력해주세요"
               required
-              value={formData.name}
+              value={formData?.name}
             />
           </Form.Group>
         </Row>
@@ -213,7 +218,7 @@ const NewItemDialog = ({ mode, showDialog, setShowDialog }) => {
             as="textarea"
             onChange={handleChange}
             rows={2}
-            value={formData.description}
+            value={formData?.description}
             required
           />
         </Form.Group>
@@ -227,7 +232,7 @@ const NewItemDialog = ({ mode, showDialog, setShowDialog }) => {
             + 추가
           </Button>
           <div className="mt-2">
-            {stock.map((item, index) => (
+            {stock?.map((item, index) => (
               <Row key={`${index}${item[0]}`}>
                 <Col sm={4}>
                   <Form.Select
@@ -285,7 +290,7 @@ const NewItemDialog = ({ mode, showDialog, setShowDialog }) => {
 
           <img
             id="uploadedimage"
-            src={formData.image}
+            src={formData?.image}
             className="upload-image mt-2"
             alt="미리보기"
             style={{ height: "100px", width: "fit-content" }}
@@ -299,7 +304,7 @@ const NewItemDialog = ({ mode, showDialog, setShowDialog }) => {
 
           <img
             id="uploadeddetail"
-            src={formData.detail}
+            src={formData?.detail}
             className="upload-image mt-2"
             alt="미리보기"
             style={{ height: "100px", width: "fit-content" }}
@@ -310,7 +315,7 @@ const NewItemDialog = ({ mode, showDialog, setShowDialog }) => {
           <Form.Group as={Col} controlId="price">
             <Form.Label>정상가</Form.Label>
             <Form.Control
-              value={formData.price}
+              value={formData?.price}
               required
               onChange={handleChange}
               type="number"
@@ -321,7 +326,7 @@ const NewItemDialog = ({ mode, showDialog, setShowDialog }) => {
           <Form.Group as={Col} controlId="salePrice">
             <Form.Label>할인가</Form.Label>
             <Form.Control
-              value={formData.salePrice}
+              value={formData?.salePrice}
               required
               onChange={handleChange}
               type="number"
@@ -335,7 +340,7 @@ const NewItemDialog = ({ mode, showDialog, setShowDialog }) => {
               as="select"
               multiple
               onChange={onHandleCategory}
-              value={formData.category}
+              value={formData?.category}
               required
             >
               {CATEGORY.map((item, idx) => (
@@ -349,7 +354,7 @@ const NewItemDialog = ({ mode, showDialog, setShowDialog }) => {
           <Form.Group as={Col} controlId="status">
             <Form.Label>상태</Form.Label>
             <Form.Select
-              value={formData.status}
+              value={formData?.status}
               onChange={handleChange}
               required
             >
@@ -364,7 +369,7 @@ const NewItemDialog = ({ mode, showDialog, setShowDialog }) => {
         <Form.Group as={Col} controlId="isNew">
           <Form.Label>신상 표시 여부</Form.Label>
           <Form.Select
-            value={formData.isNew}
+            value={formData?.isNew}
             onChange={handleChange}
             required
           >
@@ -378,7 +383,7 @@ const NewItemDialog = ({ mode, showDialog, setShowDialog }) => {
         <Form.Group as={Col} controlId="choice">
           <Form.Label>MD's PICK 표시 여부</Form.Label>
           <Form.Select
-            value={formData.choice}
+            value={formData?.choice}
             onChange={handleChange}
             required
           >
