@@ -22,6 +22,10 @@ const ProductDetail = () => {
 
   const navigate = useNavigate();
 
+  const pickIsTrue = () => {
+    return selectedProduct.choice ? true : false
+  }
+
   const addItemToCart = () => {
     //사이즈를 아직 선택안했다면 에러
     // 아직 로그인을 안한유저라면 로그인페이지로
@@ -55,9 +59,15 @@ const ProductDetail = () => {
             />
           </Col>
           <Col className="product-info-area" sm={6}>
-            <div className="product-info">{selectedProduct.name}</div>
-            <div className="product-info">₩ 45,000</div>
-            <div className="product-info">샘플설명</div>
+            <div className='detail-product-description'>{selectedProduct.description}</div>
+            <div className={`pickbox${pickIsTrue ? "_switched" : ""}`}>{selectedProduct.choice == true ? "[MD PICK]" : ""}</div>
+            <div className='detail-product-brand'><b>{selectedProduct.brand}</b></div>
+            <br />
+            <div className='detail-product-name'>{selectedProduct.name}<h className='detail-product-new'>{selectedProduct.isNew == true ? "NEW" : ""}</h></div>
+            <br />
+            <div className='detail-product-price'>정상가<h> {currencyFormat(selectedProduct.price)} 원 </h></div>
+            <div className='detail-product-saleprice'>할인가<b> {currencyFormat(selectedProduct.salePrice)} </b>원 <b className='detail-product-saleper'>{Math.round((selectedProduct.price - selectedProduct.salePrice) / selectedProduct.price * 100)}%</b></div>
+            <div className='detail-line' />
 
             <Dropdown
               className="drop-down size-drop-down"
@@ -87,7 +97,7 @@ const ProductDetail = () => {
           </Col>
         </Row>
         <Row>
-          <div>DETAIL</div>
+          <div className="product-detail-text">DETAIL</div>
         </Row>
         <Row>
           <img

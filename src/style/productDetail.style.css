@@ -1,18 +1,116 @@
-
-.size-drop-down{
-    width:100%;
+.size-drop-down {
+    width: 100%;
 }
 
-.warning-message{
-    color:red;
+.warning-message {
+    color: red;
 }
 
-.product-info{
+.product-info {
     font-size: 20px;
     margin-bottom: 10px;
+}
+
+.product-info-area {
+    font-family: 'SUIT-Regular';
 }
 
 .loading {
     display: flex;
     justify-content: center;
+}
+
+.detail-product-brand {
+    font-size: 1.3rem;
+    margin: 5px;
+}
+
+.detail-product-name {
+    font-size: 1.2rem;
+    margin: 5px;
+}
+
+.detail-product-description {
+    font-size: 1.2rem;
+    margin: 5px;
+    color: #848484;
+    font-style: italic;
+}
+
+.product-detail-text {
+    background-color: black;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    padding: 5px;
+    font-family: 'GmarketSansMedium';
+}
+
+@keyframes blink-effect {
+    50% {
+        opacity: 0;
+    }
+}
+
+.detail-product-new {
+    width: fit-content;
+    background-color: black;
+    color: white;
+    animation: blink-effect 1s step-end infinite;
+    font-size: 0.7rem;
+}
+
+.detail-product-price {
+    font-size: 1.2rem;
+    margin: 5px;
+}
+
+.detail-product-price h {
+    font-size: 1rem;
+    color: #848484;
+    text-decoration: line-through;
+    margin: 5px;
+}
+
+.detail-product-saleprice {
+    font-size: 1.2rem;
+    margin: 5px;
+}
+
+.detail-product-saleprice b {
+    margin: 5px;
+}
+
+.detail-product-saleper {
+    color: #FA5500;
+    font-size: 1.1rem;
+    margin: 5px;
+}
+
+.detail-line {
+    border-bottom: 2px solid black;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+@font-face {
+    font-family: "YeojuCeramic";
+    font-weight: 50;
+    src: url("../fonts/YeojuCeramic.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: 'SUIT-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
 }
