@@ -7,9 +7,10 @@ const addToCart =
     async (dispatch) => {
       try {
         dispatch({ type: types.ADD_TO_CART_REQUEST });
-        const response = await api.post("/cart", { productId: id, size, qty: 1 }); //qty는 개수
+        const response = await api.post("/cart", { productId: id, option:size, qty: 1 }); //qty는 개수
+        console.log("rrrr cart r", response);
         if (response.status === 200) {
-          dispatch({ type: types.ADD_TO_CART_SUCCESS, payload: response.data });  // TO DO
+          dispatch({ type: types.ADD_TO_CART_SUCCESS, payload: response.data.cartItemQty });
           dispatch(commonUiActions.showToastMessage("장바구니에 상품이 추가되었습니다!", "success"));
         }
         else {
