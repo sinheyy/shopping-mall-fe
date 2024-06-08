@@ -9,13 +9,14 @@ import { commonUiActions } from "../action/commonUiAction";
 import { currencyFormat } from "../utils/number";
 import "../style/productDetail.style.css";
 import ClipLoader from "react-spinners/ClipLoader";
+import User from "../reducer/userReducer";
 
 const ProductDetail = () => {
   const dispatch = useDispatch();
-
   const selectedProduct = useSelector((state) => state.product.selectedProduct);
   const loading = useSelector((state) => state.product.loading);
   const error = useSelector((state) => state.product.error);
+  const { user } = useSelector((state) => state.user);
   const [size, setSize] = useState("");
   const { id } = useParams();
   const [sizeError, setSizeError] = useState(false);
@@ -28,11 +29,23 @@ const ProductDetail = () => {
 
   const addItemToCart = () => {
     //사이즈를 아직 선택안했다면 에러
+    if (size === "") {
+      setSizeError(true);
+      return;
+    }
     // 아직 로그인을 안한유저라면 로그인페이지로
+    if (!user) navigate("/login");
+
     // 카트에 아이템 추가하기
+    dispatch(cartActions.addToCart({ id, size }));  // id(useParams로 받아옴)와 size(setSize로 설정) 보내줌
   };
+
   const selectSize = (value) => {
     // 사이즈 추가하기
+
+    if (sizeError) setSizeError(false);
+    setSize(value);
+
   };
 
   //카트에러가 있으면 에러메세지 보여주기
@@ -88,9 +101,9 @@ const ProductDetail = () => {
               <Dropdown.Menu className="size-drop-down">
                 {Object.keys(selectedProduct.stock).map((size) => [size, selectedProduct.stock[size]]).map((item, index) => (
                   item[1] > 0 ?
-                    (<Dropdown.Item className="size-drop-down-abled">{item[0]}</Dropdown.Item>)
+                    (<Dropdown.Item eventKey={item[0]} className="size-drop-down-abled">{item[0].toUpperCase()}</Dropdown.Item>)
                     :
-                    (<Dropdown.Item className="size-drop-down-disabled" disabled>{item[0]}</Dropdown.Item>)
+                    (<Dropdown.Item eventKey={item[0]} className="size-drop-down-disabled" disabled>{item[0].toUpperCase()}</Dropdown.Item>)
 
                 ))}
               </Dropdown.Menu>

@@ -1,15 +1,31 @@
 import api from "../utils/api";
 import * as types from "../constants/cart.constants";
 import { commonUiActions } from "../action/commonUiAction";
+import { responsive } from "@cloudinary/react";
 const addToCart =
   ({ id, size }) =>
-  async (dispatch) => {};
+    async (dispatch) => {
+      try {
+        dispatch({ type: types.ADD_TO_CART_REQUEST });
+        const response = await api.post("/cart", { productId: id, size, qty: 1 }); //qty는 개수
+        if (response.status === 200) {
+          dispatch({ type: types.ADD_TO_CART_SUCCESS, payload: response.data });  // TO DO
+          dispatch(commonUiActions.showToastMessage("장바구니에 상품이 추가되었습니다!", "success"));
+        }
+        else {
+          throw new Error(response.error);
+        }
+      } catch (error) {
+        dispatch({ type: types.ADD_TO_CART_FAIL, payload: error.message });
+        dispatch(commonUiActions.showToastMessage(error.message, "error"));
+      }
+    };
 
-const getCartList = () => async (dispatch) => {};
-const deleteCartItem = (id) => async (dispatch) => {};
+const getCartList = () => async (dispatch) => { };
+const deleteCartItem = (id) => async (dispatch) => { };
 
-const updateQty = (id, value) => async (dispatch) => {};
-const getCartQty = () => async (dispatch) => {};
+const updateQty = (id, value) => async (dispatch) => { };
+const getCartQty = () => async (dispatch) => { };
 export const cartActions = {
   addToCart,
   getCartList,
