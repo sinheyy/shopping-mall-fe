@@ -7,6 +7,7 @@ import ToastMessage from "../component/ToastMessage";
 import { useDispatch, useSelector } from "react-redux";
 import { userActions } from "../action/userAction";
 import { commonUiActions } from "../action/commonUiAction";
+import Footer from "../component/Footer";
 
 const AppLayout = ({ children }) => {
   const location = useLocation();
@@ -37,6 +38,7 @@ const AppLayout = ({ children }) => {
           {children}
         </>
       )}
+      <Footer />
     </div>
   );
 };
