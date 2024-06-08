@@ -439,6 +439,14 @@ body {
   font-size: 0.5rem;
 }
 
+.no-search-result{
+  display: flex;
+  justify-content: center;
+  font-family: 'SUIT-Regular';
+  font-size: 1.2rem;
+  font-style: italic;
+}
+
 @font-face {
   font-family: "YeojuCeramic";
   font-weight: 50;

@@ -12,11 +12,11 @@ const ProductAll = () => {
   const loading = useSelector((state) => state.user.loading);
   const error = useSelector((state) => state.product.error);
   const searchKeyword = useSelector((state) => state.product.searchKeyword);
-  console.log("seeearch", searchKeyword);
   const { productList, totalPageNum } = useSelector((state) => state.product);
   const [query, setQuery] = useSearchParams();
   const name = query.get("name");
   const page = query.get("page");
+  const [searchResult, setSearchResult] = useState(true);
 
   // 처음 로딩하면 상품리스트 
   //상품리스트 가져오기 (url쿼리 맞춰서)
@@ -40,6 +40,17 @@ const ProductAll = () => {
 
   }, [name]);
 
+  useEffect(() => {
+    console.log("검색어에 해당하는 리스트가 없어용 ", productList);
+    console.log("검색어에 해당하는 리스트가 없어용-rllen ", productList.length);
+    if (productList.length == 0) {
+      setSearchResult(true);
+    }
+    else {
+      setSearchResult(false);
+    }
+  }, [productList])
+
 
   return (
     <>
@@ -48,15 +59,23 @@ const ProductAll = () => {
           (<div className='loading' > <ClipLoader color="#FB6D33" loading={loading} size={100} /></div>)
           :
           (
-            <Container>
-              <Row>
-                {productList?.map((product, index) =>
-                  <Col key={product._id} className="card" md={3} sm={12}>
-                    <ProductCard product={product} />
-                  </Col>
-                )}
-              </Row>
-            </Container>
+            searchResult ?
+              (
+                <div className="no-search-result">검색 결과가 없습니다.</div>
+              )
+              :
+              (
+                <Container>
+                  <Row>
+                    {productList?.map((product, index) =>
+                      <Col key={product._id} className="card" md={3} sm={12}>
+                        <ProductCard product={product} />
+                      </Col>
+                    )}
+                  </Row >
+                </Container >
+              )
+
           )
       }
     </>
