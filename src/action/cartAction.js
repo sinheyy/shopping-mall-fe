@@ -7,8 +7,7 @@ const addToCart =
     async (dispatch) => {
       try {
         dispatch({ type: types.ADD_TO_CART_REQUEST });
-        const response = await api.post("/cart", { productId: id, option:size, qty: 1 }); //qty는 개수
-        console.log("rrrr cart r", response);
+        const response = await api.post("/cart", { productId: id, option: size, qty: 1 }); //qty는 개수
         if (response.status === 200) {
           dispatch({ type: types.ADD_TO_CART_SUCCESS, payload: response.data.cartItemQty });
           dispatch(commonUiActions.showToastMessage("장바구니에 상품이 추가되었습니다!", "success"));
@@ -22,7 +21,22 @@ const addToCart =
       }
     };
 
-const getCartList = () => async (dispatch) => { };
+const getCartList = () => async (dispatch) => {
+  try {
+    dispatch({ type: types.GET_CART_LIST_REQUEST });
+    const response = await api.get("/cart");
+    console.log("cart List 불러오기 ", response);
+
+    if (response.status === 200) {
+      dispatch({ type: types.GET_CART_LIST_SUCCESS, payload: response.data.data });
+    }
+    else {
+      throw new Error(response.error);
+    }
+  } catch (error) {
+    dispatch({ type: types.GET_CART_LIST_FAIL, payload: error.message });
+  }
+};
 const deleteCartItem = (id) => async (dispatch) => { };
 
 const updateQty = (id, value) => async (dispatch) => { };
