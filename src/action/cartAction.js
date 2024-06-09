@@ -43,6 +43,7 @@ const deleteCartItem = (id) => async (dispatch) => {
     const response = await api.delete(`/cart/${id}`);
 
     dispatch({ type: types.DELETE_CART_ITEM_SUCCESS, payload: response.data.cartItemQty });
+    console.log("deleteCartItem ", response);
     dispatch(commonUiActions.showToastMessage("상품이 성공적으로 삭제되었습니다.", "success"));
     dispatch(getCartList());
 
@@ -56,7 +57,13 @@ const updateQty = (id, value) => async (dispatch) => {
   try {
     dispatch({ type: types.UPDATE_CART_ITEM_REQUEST });
     const response = await api.put(`/cart/${id}`, { qty: value });
-    dispatch({ type: types.UPDATE_CART_ITEM_SUCCESS, payload: response.data.data });
+    if (response.status === 200) {
+      dispatch({ type: types.UPDATE_CART_ITEM_SUCCESS, payload: response.data.data });
+    }
+    else {
+      throw new Error(response.error);
+    }
+    
 
   } catch (error) {
     dispatch({ type: types.UPDATE_CART_ITEM_FAIL, payload: error.message });
@@ -64,7 +71,25 @@ const updateQty = (id, value) => async (dispatch) => {
   }
 };
 
-const getCartQty = () => async (dispatch) => { };
+const getCartQty = () => async (dispatch) => {
+  try {
+    dispatch({ type: types.GET_CART_QTY_REQUEST });
+    const response = await api.get("/cart/qty");
+    console.log("getCartQty ", response);
+    if (response.status === 200) {
+      dispatch({
+        type: types.GET_CART_QTY_SUCCESS, payload: response.data.qty
+      });
+    }
+    else {
+      throw new Error(response.error);
+    }
+
+  } catch (error) {
+    dispatch({ type: types.GET_CART_QTY_FAIL, payload: error.message });
+    dispatch(commonUiActions.showToastMessage(error.message, "error"));
+  }
+};
 
 export const cartActions = {
   addToCart,

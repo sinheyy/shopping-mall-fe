@@ -15,11 +15,6 @@ const CartProductCard = ({ item }) => {
     dispatch(cartActions.updateQty(id, value));
   };
 
-  const handleQtyChange2 = (id, value) => {
-    //아이템 수량을 수정한다
-    dispatch(cartActions.updateQty(id, value));
-  };
-
   const deleteCart = (id) => {
     //아이템을 지운다
     if (window.confirm("삭제하시겠습니까?")) {

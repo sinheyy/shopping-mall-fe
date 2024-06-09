@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { userActions } from "../action/userAction";
 import { commonUiActions } from "../action/commonUiAction";
 import Footer from "../component/Footer";
+import { cartActions } from "../action/cartAction";
 
 const AppLayout = ({ children }) => {
   const location = useLocation();
@@ -19,6 +20,13 @@ const AppLayout = ({ children }) => {
   useEffect(() => {
     dispatch(userActions.loginWithToken());
   }, []);
+
+  useEffect(() => {
+    if (user) {
+      console.log("getCartQty 호출");
+      dispatch(cartActions.getCartQty());
+    }
+  }, [user]);
 
   return (
     <div>

@@ -12,7 +12,7 @@ const OrderReceipt = ({ cartList, totalPrice, totalSalePrice, totalProductPrice 
     <div className="receipt-container">
       <h3 className="receipt-title">주문 내역</h3>
       <ul className="receipt-list">
-        {cartList.map((item) =>
+        {cartList.length > 0 && cartList.map((item) =>
           <li>
             <div className="display-flex space-between">
               <div>{item.productId.name}</div>
