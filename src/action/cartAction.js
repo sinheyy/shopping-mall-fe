@@ -37,7 +37,20 @@ const getCartList = () => async (dispatch) => {
     dispatch({ type: types.GET_CART_LIST_FAIL, payload: error.message });
   }
 };
-const deleteCartItem = (id) => async (dispatch) => { };
+const deleteCartItem = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: types.DELETE_CART_ITEM_REQUEST });
+    const response = await api.delete(`/cart/${id}`);
+
+    dispatch({ type: types.DELETE_CART_ITEM_SUCCESS, payload: response.data.cartItemQty });
+    dispatch(commonUiActions.showToastMessage("상품이 성공적으로 삭제되었습니다.", "success"));
+    dispatch(getCartList());
+
+  } catch (error) {
+    dispatch({ type: types.DELETE_CART_ITEM_FAIL, payload: error.message });
+    dispatch(commonUiActions.showToastMessage(error.message, "error"));
+  }
+};
 
 const updateQty = (id, value) => async (dispatch) => { };
 const getCartQty = () => async (dispatch) => { };

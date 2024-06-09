@@ -17,7 +17,7 @@ const CartProductCard = ({ item }) => {
   const deleteCart = (id) => {
     //아이템을 지운다
     if (window.confirm("삭제하시겠습니까?")) {
-      
+      dispatch(cartActions.deleteCartItem(id));
     }
     else {
       dispatch(commonUiActions.showToastMessage("상품 삭제가 취소되었습니다.", "success"));
@@ -41,7 +41,7 @@ const CartProductCard = ({ item }) => {
               <FontAwesomeIcon
                 icon={faTrash}
                 width={24}
-                onClick={() => deleteCart("hard_code")}
+                onClick={() => deleteCart(item._id)}
               />
             </button>
           </div>
