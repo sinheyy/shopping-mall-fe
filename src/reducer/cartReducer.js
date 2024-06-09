@@ -19,7 +19,11 @@ function cartReducer(state = initialState, action) {
   const { type, payload } = action;
   switch (type) {
     case types.LOGOUT:
-      return { ...state, cartItemQty: 0, cartList: [] };
+      return {
+        ...state, loading: false, cartItemQty: 0, cartList: [], totalPrice: 0,
+        totalSalePrice: 0,
+        totalProductPrice: 0
+};
     case types.ADD_TO_CART_REQUEST:
     case types.GET_CART_LIST_REQUEST:
     case types.DELETE_CART_ITEM_REQUEST:

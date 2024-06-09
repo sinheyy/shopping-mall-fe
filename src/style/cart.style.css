@@ -109,6 +109,11 @@
     align-items: center;
 }
 
+.loading {
+    display: flex;
+    justify-content: center;
+}
+
 @font-face {
     font-family: "YeojuCeramic";
     font-weight: 50;
