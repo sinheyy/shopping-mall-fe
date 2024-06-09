@@ -46,7 +46,8 @@ const OrderReceipt = ({ cartList, totalPrice, totalSalePrice, totalProductPrice 
         <div>
           총 결제 금액:
         </div>
-        <div style={{fontSize:"1.2rem"
+        <div style={{
+          fontSize: "1.2rem"
         }}>
           <strong>{currencyFormat(totalPrice)}</strong> 원
         </div>
@@ -57,7 +58,7 @@ const OrderReceipt = ({ cartList, totalPrice, totalSalePrice, totalProductPrice 
           className="payment-button"
           onClick={() => navigate("/payment")}
         >
-          선택상품 주문하기
+          선택 상품 주문하기
         </Button>
       )}
     </div>

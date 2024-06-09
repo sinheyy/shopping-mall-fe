@@ -10,8 +10,14 @@ import { commonUiActions } from "../action/commonUiAction";
 const CartProductCard = ({ item }) => {
   const dispatch = useDispatch();
 
-  const handleQtyChange = () => {
+  const handleQtyChange = (id, value) => {
     //아이템 수량을 수정한다
+    dispatch(cartActions.updateQty(id, value));
+  };
+
+  const handleQtyChange2 = (id, value) => {
+    //아이템 수량을 수정한다
+    dispatch(cartActions.updateQty(id, value));
   };
 
   const deleteCart = (id) => {
@@ -54,12 +60,12 @@ const CartProductCard = ({ item }) => {
           </div>
           <div>옵션 : {item.option.toUpperCase()}</div>
           <div>합계 : <strong>{currencyFormat(item.productId.salePrice * item.qty)}</strong> 원</div>
-          <div>
+          <div className="sort-row">
             수량 :
-            <Form.Select
-              onChange={(event) => handleQtyChange()}
+            {/* <Form.Select
+              onChange={(event) => handleQtyChange(item._id, event.target.value)}
               required
-              defaultValue={1}
+              defaultValue={item.qty}
               className="qty-dropdown"
             >
               <option value={1}>1</option>
@@ -72,7 +78,17 @@ const CartProductCard = ({ item }) => {
               <option value={8}>8</option>
               <option value={9}>9</option>
               <option value={10}>10</option>
-            </Form.Select>
+            </Form.Select> */}
+            <Form.Control
+              onChange={(event) =>
+                handleQtyChange(item._id, event.target.value)
+              }
+              type="number"
+              placeholder="수량"
+              value={item.qty}
+              className="qty-dropdown"
+              min={1}
+            />
           </div>
         </Col>
       </Row>

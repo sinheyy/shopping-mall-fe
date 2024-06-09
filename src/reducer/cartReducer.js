@@ -21,12 +21,14 @@ function cartReducer(state = initialState, action) {
     case types.ADD_TO_CART_REQUEST:
     case types.GET_CART_LIST_REQUEST:
     case types.DELETE_CART_ITEM_REQUEST:
+    case types.UPDATE_CART_ITEM_REQUEST:
       return { ...state, loading: true };
     case types.ADD_TO_CART_SUCCESS:
       return { ...state, loading: false, cartItemQty: payload };
     case types.GET_CART_LIST_SUCCESS:
       return {
-        ...state, loading: false, cartList: payload, totalPrice: payload.reduce(
+        ...state, loading: false, cartList: payload,
+        totalPrice: payload.reduce(
           (total, item) => (total += item.productId.salePrice * item.qty), 0
         ),
         totalSalePrice: payload.reduce(
@@ -38,6 +40,19 @@ function cartReducer(state = initialState, action) {
       };
     case types.DELETE_CART_ITEM_SUCCESS:
       return { ...state, loading: false, cartItemQty: payload };
+    case types.UPDATE_CART_ITEM_SUCCESS:
+      return {
+        ...state, loading: false, cartList: payload,
+        totalPrice: payload.reduce(
+          (total, item) => (total += item.productId.salePrice * item.qty), 0
+        ),
+        totalSalePrice: payload.reduce(
+          (total, item) => (total += item.productId.price * item.qty - item.productId.salePrice * item.qty), 0
+        ),
+        totalProductPrice: payload.reduce(
+          (total, item) => (total += item.productId.price * item.qty), 0
+        ),
+      };
     case types.ADD_TO_CART_FAIL:
     case types.GET_CART_LIST_FAIL:
     case types.DELETE_CART_ITEM_FAIL:
