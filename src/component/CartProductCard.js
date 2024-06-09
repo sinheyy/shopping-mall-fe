@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useDispatch } from "react-redux";
 import { cartActions } from "../action/cartAction";
 import { currencyFormat } from "../utils/number";
+import { commonUiActions } from "../action/commonUiAction";
 
 const CartProductCard = ({ item }) => {
   const dispatch = useDispatch();
@@ -15,6 +16,12 @@ const CartProductCard = ({ item }) => {
 
   const deleteCart = (id) => {
     //아이템을 지운다
+    if (window.confirm("삭제하시겠습니까?")) {
+      
+    }
+    else {
+      dispatch(commonUiActions.showToastMessage("상품 삭제가 취소되었습니다.", "success"));
+    }
   };
 
   return (
@@ -27,8 +34,9 @@ const CartProductCard = ({ item }) => {
           />
         </Col>
         <Col md={10} xs={12}>
+          <div className="product-cart-brand">{item.productId.brand}</div>
           <div className="display-flex space-between">
-            <h3>{item.productId.name}</h3>
+            <div className="product-cart-name">{item.productId.name}</div>
             <button className="trash-button">
               <FontAwesomeIcon
                 icon={faTrash}
@@ -39,13 +47,15 @@ const CartProductCard = ({ item }) => {
           </div>
 
           <div>
-            정상가 : <strong>₩ {currencyFormat(item.productId.price)}</strong>
-            세일가 : <strong>₩ {currencyFormat(item.productId.salePrice)}</strong>
+            가격 : <span className="product-cart-price">{currencyFormat(item.productId.price)} 원</span>
+            <span className="product-cart-saleprice">
+              {currencyFormat(item.productId.salePrice)} 원
+            </span>
           </div>
-          <div>Size: {item.option.toUpperCase()}</div>
-          <div>Total: ₩ {currencyFormat(item.productId.salePrice * item.qty)}</div>
+          <div>옵션 : {item.option.toUpperCase()}</div>
+          <div>합계 : <strong>{currencyFormat(item.productId.salePrice * item.qty)}</strong> 원</div>
           <div>
-            Quantity:
+            수량 :
             <Form.Select
               onChange={(event) => handleQtyChange()}
               required

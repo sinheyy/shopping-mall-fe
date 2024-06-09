@@ -4,7 +4,7 @@ import { useNavigate } from "react-router";
 import { useLocation } from "react-router-dom";
 import { currencyFormat } from "../utils/number";
 
-const OrderReceipt = ({ cartList, totalPrice }) => {
+const OrderReceipt = ({ cartList, totalPrice, totalSalePrice, totalProductPrice }) => {
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -16,18 +16,39 @@ const OrderReceipt = ({ cartList, totalPrice }) => {
           <li>
             <div className="display-flex space-between">
               <div>{item.productId.name}</div>
-
-              <div>₩ {currencyFormat(item.productId.salePrice * item.qty)}</div>
+              <div className="receipt-price">{currencyFormat(item.productId.price * item.qty)} 원</div>
+              <div>{currencyFormat(item.productId.salePrice * item.qty)} 원</div>
             </div>
           </li>)}
 
       </ul>
-      <div className="display-flex space-between receipt-title">
+      <div className="display-flex space-between receipt-total-sale">
         <div>
-          <strong>Total:</strong>
+          총 상품 금액:
         </div>
+        <div style={{
+          fontSize: "1rem"
+        }}>
+          {currencyFormat(totalProductPrice)} 원
+        </div>
+      </div>
+      <div className="display-flex space-between receipt-total-sale">
         <div>
-          <strong>₩ {currencyFormat(totalPrice)}</strong>
+          총 할인 금액:
+        </div>
+        <div style={{
+          fontSize: "1rem"
+        }}>
+          -{currencyFormat(totalSalePrice)} 원
+        </div>
+      </div>
+      <div className="display-flex space-between receipt-total">
+        <div>
+          총 결제 금액:
+        </div>
+        <div style={{fontSize:"1.2rem"
+        }}>
+          <strong>{currencyFormat(totalPrice)}</strong> 원
         </div>
       </div>
       {location.pathname.includes("/cart") && (
@@ -36,7 +57,7 @@ const OrderReceipt = ({ cartList, totalPrice }) => {
           className="payment-button"
           onClick={() => navigate("/payment")}
         >
-          결제 계속하기
+          선택상품 주문하기
         </Button>
       )}
 

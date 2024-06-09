@@ -78,7 +78,7 @@ const ProductDetail = () => {
             <br />
             <div className='detail-product-name'>{selectedProduct.name}<h className='detail-product-new'>{selectedProduct.isNew == true ? "NEW" : ""}</h></div>
             <br />
-            <div className='detail-product-price'>정상가<h> {currencyFormat(selectedProduct.price)} 원 </h></div>
+            <div className='detail-product-price'>정상가<span> {currencyFormat(selectedProduct.price)} 원 </span></div>
             <div className='detail-product-saleprice'>할인가<b> {currencyFormat(selectedProduct.salePrice)} </b>원 <b className='detail-product-saleper'>{Math.round((selectedProduct.price - selectedProduct.salePrice) / selectedProduct.price * 100)}%</b></div>
             <div className='detail-line' />
 

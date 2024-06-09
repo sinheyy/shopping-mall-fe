@@ -67,7 +67,7 @@
     margin: 5px;
 }
 
-.detail-product-price h {
+.detail-product-price span {
     font-size: 1rem;
     color: #848484;
     text-decoration: line-through;

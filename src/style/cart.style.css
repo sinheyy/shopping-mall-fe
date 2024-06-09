@@ -1,44 +1,118 @@
-.product-card-cart{
+.product-card-cart {
     margin-bottom: 10px;
 }
-.qty-dropdown{
-    max-width:400px;
+
+.qty-dropdown {
+    max-width: 400px;
 }
-.trash-button{
-    background-color: white;
-    border: 1px solid gray;
+
+.trash-button {
+    background-color: transparent;
+    border: 1px solid black;
 }
-.product-card-cart{
-    background-color: ghostwhite;
-    padding:10px;
+
+.trash-button:hover {
+    border: 1px solid #FA5500;
 }
-.receipt-container{
+
+.product-card-cart {
+    background-color: transparent;
+    padding: 10px;
+    border: none;
+    border-bottom: 1px solid black;
+    font-family: 'SUIT-Regular';
+}
+
+.receipt-container {
     border: 1px solid gray;
     padding: 32px 24px;
+    font-family: 'SUIT-Regular';
 }
-.receipt-list{
+
+.receipt-list {
     list-style-type: none;
     padding: 0;
     border-bottom: 1px solid black;
 }
 
-.receipt-list li{
+.receipt-list li {
     padding-bottom: 10px;
+
 }
 
-.receipt-title{
+.receipt-title {
     margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
 }
 
-.payment-button{
-   width: 100%;
-   padding: 16px;
-   margin-bottom: 20px;
+.receipt-total {
+    margin-bottom: 20px;
+    color: #FA5500;
 }
-.text-align-center{
+
+.receipt-total-sale {
+    margin-bottom: 20px;
+    color: #333339;
+}
+
+.receipt-price{
+    color:#848484;
+    text-decoration: line-through;
+}
+
+.payment-button {
+    width: 100%;
+    padding: 16px;
+    margin-bottom: 20px;
+    border-radius: 0px;
+    font-size: 1.2rem;
+}
+
+.text-align-center {
     text-align: center;
 }
-.empty-bag{
+
+.empty-bag {
     background-color: white;
     padding: 20px;
+}
+
+.product-cart-brand {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.product-cart-name {
+    font-size: 1.1rem;
+}
+
+.product-cart-price {
+    color: #848484;
+    text-decoration: line-through;
+}
+
+.product-cart-saleprice {
+    margin-left: 5px;
+}
+
+
+@font-face {
+    font-family: "YeojuCeramic";
+    font-weight: 50;
+    src: url("../fonts/YeojuCeramic.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: 'SUIT-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
 }

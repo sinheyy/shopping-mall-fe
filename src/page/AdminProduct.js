@@ -62,7 +62,13 @@ const AdminProduct = () => {
 
   const deleteItem = (id) => {
     //아이템 삭제하기
-    dispatch(productActions.deleteProduct(id));
+    if (window.confirm("삭제하시겠습니까?")) {
+      dispatch(productActions.deleteProduct(id));
+    }
+    else {
+      dispatch(commonUiActions.showToastMessage("상품 삭제가 취소되었습니다.", "success"));
+    }
+
   };
 
   const openEditForm = (product) => {
