@@ -81,7 +81,8 @@
 }
 
 .empty-bag {
-    background-color: white;
+    background-color: transparent;
+    font-family: 'GmarketSansMedium';
     padding: 20px;
 }
 
