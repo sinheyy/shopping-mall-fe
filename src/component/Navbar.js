@@ -43,7 +43,7 @@ const Navbar = ({ user }) => {
 
   const onCheckEnter = (event) => {
     if (event.key === "Enter") {
-      
+
 
       if (event.target.value === "") {
         dispatch({ type: types.SET_SEARCH_KEYWORD, payload: "" });
@@ -58,6 +58,7 @@ const Navbar = ({ user }) => {
   };
   const logout = () => {
     dispatch(userActions.logout());
+    dispatch(cartActions.logout());
   };
   return (
     <div>

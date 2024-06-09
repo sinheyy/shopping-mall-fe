@@ -91,10 +91,17 @@ const getCartQty = () => async (dispatch) => {
   }
 };
 
+// navbar logout 클릭시
+const logout = () => async (dispatch) => {
+  // user 정보 초기화
+  dispatch({ type: types.LOGOUT });
+};
+
 export const cartActions = {
   addToCart,
   getCartList,
   deleteCartItem,
   updateQty,
   getCartQty,
+  logout,
 };
