@@ -31,6 +31,7 @@ const PaymentPage = () => {
     zip: "",
   });
   const { cartList, totalPrice, totalSalePrice, totalProductPrice } = useSelector((state) => state.cart);
+  const { user } = useSelector((state) => state.user);
 
   //맨처음 페이지 로딩할때는 넘어가고  오더번호를 받으면 성공페이지로 넘어가기
   console.log(cartList);
@@ -85,13 +86,31 @@ const PaymentPage = () => {
   }
 
   return (
-    <Container>
+    <Container className="order-container">
       <Row>
         <Col lg={7}>
           <div>
-            <h2 className="mb-2">배송 주소</h2>
+            <h3 className="order-title">주문자 정보</h3>
+            <div className='line' />
+            <Row>
+              <Col lg={6}>주문하시는 분</Col>
+              <Col lg={6}>{user.name}</Col>
+            </Row>
+            <Row>
+              <Col lg={6}>이메일</Col>
+              <Col lg={6}>{user.email}</Col>
+            </Row>
+
+            <div style={{ margin: "30px" }} />
+          </div>
+          <div>
+            <h3 className="order-title">배송지 정보</h3>
+            <div className='line' />
             <div>
               <Form onSubmit={handleSubmit}>
+                <Form.Group as={Row}>
+                  <Form.Label>받으시는 분</Form.Label>
+                </Form.Group>
                 <Row className="mb-3">
                   <Form.Group as={Col} controlId="lastName">
                     <Form.Label>성</Form.Label>
@@ -115,9 +134,9 @@ const PaymentPage = () => {
                 </Row>
 
                 <Form.Group className="mb-3" controlId="formGridAddress1">
-                  <Form.Label>연락처</Form.Label>
+                  <Form.Label>휴대폰 번호</Form.Label>
                   <Form.Control
-                    placeholder="010-xxx-xxxxx"
+                    placeholder="010-XXXX-XXXX"
                     onChange={handleFormChange}
                     required
                     name="contact"
@@ -125,9 +144,10 @@ const PaymentPage = () => {
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formGridAddress2">
-                  <Form.Label>주소</Form.Label>
+                  <div style={{ margin: "30px" }} />
+                  <Form.Label>상세 주소</Form.Label>
                   <Form.Control
-                    placeholder="Apartment, studio, or floor"
+                    placeholder="상세 주소를 입력해주세요"
                     onChange={handleFormChange}
                     required
                     name="address"
@@ -136,7 +156,7 @@ const PaymentPage = () => {
 
                 <Row className="mb-3">
                   <Form.Group as={Col} controlId="formGridCity">
-                    <Form.Label>City</Form.Label>
+                    <Form.Label>도시</Form.Label>
                     <Form.Control
                       onChange={handleFormChange}
                       required
@@ -145,7 +165,7 @@ const PaymentPage = () => {
                   </Form.Group>
 
                   <Form.Group as={Col} controlId="formGridZip">
-                    <Form.Label>Zip</Form.Label>
+                    <Form.Label>우편번호</Form.Label>
                     <Form.Control
                       onChange={handleFormChange}
                       required
@@ -153,11 +173,19 @@ const PaymentPage = () => {
                     />
                   </Form.Group>
                 </Row>
+                <Form.Group className="mb-3" controlId="formGridDelieveryMessage">
+                  <Form.Label>배송 메세지</Form.Label>
+                  <Form.Control
+                    value="부재 시 문 앞에 놓아주세요"
+                  />
+                </Form.Group>
                 <div className="mobile-receipt-area">
                   <OrderReceipt cartList={cartList} totalPrice={totalPrice} totalSalePrice={totalSalePrice} totalProductPrice={totalProductPrice} />
                 </div>
                 <div>
-                  <h2 className="payment-title">결제 정보</h2>
+                  <div style={{ margin: "30px" }} />
+                  <h2 className="order-title">결제 수단</h2>
+                  <div className='line' />
                   <PaymentForm cardValue={cardValue} handleInputFocus={handleInputFocus} handlePaymentInfoChange={handlePaymentInfoChange} />
                 </div>
 
