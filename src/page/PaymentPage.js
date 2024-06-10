@@ -94,11 +94,11 @@ const PaymentPage = () => {
             <div className='line' />
             <Row>
               <Col lg={6}>주문하시는 분</Col>
-              <Col lg={6}>{user.name}</Col>
+              <Col lg={6}>{user?.name}</Col>
             </Row>
             <Row>
               <Col lg={6}>이메일</Col>
-              <Col lg={6}>{user.email}</Col>
+              <Col lg={6}>{user?.email}</Col>
             </Row>
 
             <div style={{ margin: "30px" }} />
