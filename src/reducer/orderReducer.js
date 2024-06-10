@@ -1,9 +1,14 @@
 import * as types from "../constants/order.constants";
 
-const initialState = {};
+const initialState = {
+};
 
 function orderReducer(state = initialState, action) {
   const { type, payload } = action;
-  return state;
+
+  switch (type) {
+    default:
+      return state;
+  }
 }
 export default orderReducer;

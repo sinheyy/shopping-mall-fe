@@ -30,26 +30,60 @@ const PaymentPage = () => {
     city: "",
     zip: "",
   });
+  const { cartList, totalPrice, totalSalePrice, totalProductPrice } = useSelector((state) => state.cart);
 
   //맨처음 페이지 로딩할때는 넘어가고  오더번호를 받으면 성공페이지로 넘어가기
-
+  console.log(cartList);
   const handleSubmit = (event) => {
     event.preventDefault();
-    //오더 생성하가ㅣ
+    console.log("handleSubmit - cartList", cartList);
+    //오더 생성하기
+    // step1. 백엔드로 데이터 보내기 (데이터 정리 필요)
+    const { firstName, lastName, contact, address, city, zip } = shipInfo
+    const data = {
+      totalPrice,
+      shipTo: { address, city, zip },
+      contact: { firstName, lastName, contact },
+      orderList: cartList.map(item => {
+        console.log("option   ", item.option);
+        return {
+          productId: item.productId._id,
+          price: item.productId.salePrice,
+          qty: item.qty,
+          option: item.option
+        }
+      })
+    }   // 백엔드로 보낼 데이터 정리
+
+    dispatch(orderActions.createOrder(data));
   };
 
   const handleFormChange = (event) => {
     //shipInfo에 값 넣어주기
+    const { name, value } = event.target;
+    setShipInfo({ ...shipInfo, [name]: value });
   };
 
   const handlePaymentInfoChange = (event) => {
     //카드정보 넣어주기
+    const { name, value } = event.target;
+    if (name === "expiry") {
+      let newValue = cc_expires_format(value);
+      setCardValue({ ...cardValue, [name]: newValue });
+      return;
+    }
+    setCardValue({ ...cardValue, [name]: value });
   };
 
   const handleInputFocus = (e) => {
     setCardValue({ ...cardValue, focus: e.target.name });
   };
+
   //카트에 아이템이 없다면 다시 카트페이지로 돌아가기 (결제할 아이템이 없으니 결제페이지로 가면 안됌)
+  if (cartList.length === 0) {
+    navigate("/cart");
+  }
+
   return (
     <Container>
       <Row>
@@ -120,10 +154,11 @@ const PaymentPage = () => {
                   </Form.Group>
                 </Row>
                 <div className="mobile-receipt-area">
-                  {/* <OrderReceipt /> */}
+                  <OrderReceipt cartList={cartList} totalPrice={totalPrice} totalSalePrice={totalSalePrice} totalProductPrice={totalProductPrice} />
                 </div>
                 <div>
                   <h2 className="payment-title">결제 정보</h2>
+                  <PaymentForm cardValue={cardValue} handleInputFocus={handleInputFocus} handlePaymentInfoChange={handlePaymentInfoChange} />
                 </div>
 
                 <Button
@@ -138,7 +173,7 @@ const PaymentPage = () => {
           </div>
         </Col>
         <Col lg={5} className="receipt-area">
-          {/* <OrderReceipt /> */}
+          <OrderReceipt cartList={cartList} totalPrice={totalPrice} totalSalePrice={totalSalePrice} totalProductPrice={totalProductPrice} />
         </Col>
       </Row>
     </Container>

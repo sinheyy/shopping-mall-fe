@@ -53,7 +53,7 @@ const OrderReceipt = ({ cartList, totalPrice, totalSalePrice, totalProductPrice 
           <strong>{currencyFormat(totalPrice)}</strong> 원
         </div>
       </div>
-      {location.pathname.includes("/cart") && (
+      {location.pathname.includes("/cart") && cartList.length > 0 && (
         <Button
           variant="dark"
           className="payment-button"
