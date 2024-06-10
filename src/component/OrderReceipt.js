@@ -16,6 +16,7 @@ const OrderReceipt = ({ cartList, totalPrice, totalSalePrice, totalProductPrice 
           <li>
             <div className="display-flex space-between">
               <div>{item.productId.name}</div>
+              <div>X{item.qty}</div>
               <div className="receipt-price">{currencyFormat(item.productId.price * item.qty)} 원</div>
               <div>{currencyFormat(item.productId.salePrice * item.qty)} 원</div>
             </div>

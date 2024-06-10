@@ -23,13 +23,14 @@ function cartReducer(state = initialState, action) {
         ...state, loading: false, cartItemQty: 0, cartList: [], totalPrice: 0,
         totalSalePrice: 0,
         totalProductPrice: 0
-};
+      };
     case types.ADD_TO_CART_REQUEST:
     case types.GET_CART_LIST_REQUEST:
     case types.DELETE_CART_ITEM_REQUEST:
-    case types.UPDATE_CART_ITEM_REQUEST:
     case types.GET_CART_QTY_REQUEST:
       return { ...state, loading: true };
+    case types.UPDATE_CART_ITEM_REQUEST:
+      return { ...state };
     case types.ADD_TO_CART_SUCCESS:
     case types.DELETE_CART_ITEM_SUCCESS:
       return { ...state, loading: false, cartItemQty: payload };
