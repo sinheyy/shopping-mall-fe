@@ -24,10 +24,14 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: white;
+    background-color: transparent;
     padding-top: 20px;
     padding-bottom: 40px;
     width: 90%;
+    border: none;
+    border-top: 3px solid black;
+    border-bottom: 3px solid black;
+    font-family: 'SUIT-Regular';
 }
 
 .check-image {
@@ -45,6 +49,30 @@
 .order-title {
     /* font-family: 'SUIT-Regular'; */
     font-family: 'GmarketSansMedium';
+
+}
+
+.ordernum {
+    font-size: 1.2rem;
+
+    span {
+        font-weight: bold;
+        color: #FA5500;
+    }
+}
+
+.basic-button {
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 0px;
+    margin-top: 10px;
+    padding: 10px;
+
+    a {
+        color: white;
+        text-decoration: none;
+    }
 }
 
 @media screen and (max-width: 63rem) {

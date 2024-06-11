@@ -56,7 +56,7 @@ const PaymentPage = () => {
       })
     }   // 백엔드로 보낼 데이터 정리
 
-    dispatch(orderActions.createOrder(data));
+    dispatch(orderActions.createOrder(data, navigate));
   };
 
   const handleFormChange = (event) => {
