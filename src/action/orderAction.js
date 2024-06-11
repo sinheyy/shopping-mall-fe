@@ -10,6 +10,7 @@ const createOrder = (payload) => async (dispatch) => {
     if (response.status === 200) {
       dispatch(commonUiActions.showToastMessage(`주문번호 : ${response.data.orderNum} 생성 성공~!`, "success"));
       //dispatch({ type: types.CREATE_ORDER_SUCCESS, payload: response.data.orderNum });
+      dispatch(cartActions.getCartQty());
     } else {
       throw new Error(response.error);
     }
