@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, Modal, Button, Col, Table } from "react-bootstrap";
+import { Form, Modal, Button, Row, Col, Table } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 
 import "../style/adminOrder.style.css";
@@ -24,33 +24,38 @@ const OrderDetailDialog = ({ open, handleClose }) => {
     return <></>;
   }
   return (
-    <Modal show={open} onHide={handleClose}>
+    <Modal show={open} onHide={handleClose} className="order-dialog">
       <Modal.Header closeButton>
-        <Modal.Title>Order Detail</Modal.Title>
+        <Modal.Title><strong>주문 내역</strong></Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <p>예약번호: {selectedOrder.orderNum}</p>
-        <p>주문날짜: {selectedOrder.createdAt.slice(0, 10)}</p>
-        <p>이메일: {selectedOrder.userId.email}</p>
-        <p>
-          주소:{selectedOrder.shipTo.address + " " + selectedOrder.shipTo.city}
-        </p>
-        <p>
-          연락처:
-          {`${
-            selectedOrder.contact.firstName + selectedOrder.contact.lastName
-          } ${selectedOrder.contact.contact}`}
-        </p>
-        <p>주문내역</p>
+        <Row>
+          <Col lg={6}>
+            <p className="order-dialog-title">주문 정보</p>
+            <p>주문 번호 : <strong className="order-dialog-ordernum">{selectedOrder.orderNum}</strong></p>
+            <p>주문 날짜 : {selectedOrder.createdAt.slice(0, 10)}</p>
+            <p>주문자 : {selectedOrder.userId.name}({selectedOrder.userId.email})</p>
+          </Col>
+          <Col lg={6}>
+            <p className="order-dialog-title">배송 정보</p>
+            <p>받는 분 : {`${selectedOrder.contact.lastName + selectedOrder.contact.firstName}`}</p>
+            <p>연락처 : {`${selectedOrder.contact.contact}`}</p>
+            <p>
+              주소 : {selectedOrder.shipTo.address + " " + selectedOrder.shipTo.city}
+            </p>
+          </Col>
+        </Row>
+        <div className="line"></div>
+        <p className="order-dialog-title">주문 내역</p>
         <div className="overflow-x">
           <Table>
             <thead>
               <tr>
                 <th>ID</th>
-                <th>Name</th>
-                <th>Unit Price</th>
-                <th>Qty</th>
-                <th>Price</th>
+                <th>상품명</th>
+                <th>단가</th>
+                <th>수량</th>
+                <th>가격</th>
               </tr>
             </thead>
             <tbody>
@@ -66,14 +71,15 @@ const OrderDetailDialog = ({ open, handleClose }) => {
                 ))}
               <tr>
                 <td colSpan={4}>총계:</td>
-                <td>{currencyFormat(selectedOrder.totalPrice)}</td>
+                <td><strong>{currencyFormat(selectedOrder.totalPrice)}</strong></td>
               </tr>
             </tbody>
           </Table>
         </div>
+        <div className="line"></div>
         <Form onSubmit={submitStatus}>
           <Form.Group as={Col} controlId="status">
-            <Form.Label>Status</Form.Label>
+            <Form.Label className="order-dialog-title">주문 상태</Form.Label>
             <Form.Select value={orderStatus} onChange={handleStatusChange}>
               {ORDER_STATUS.map((item, idx) => (
                 <option key={idx} value={item.toLowerCase()}>
@@ -86,11 +92,11 @@ const OrderDetailDialog = ({ open, handleClose }) => {
             <Button
               variant="light"
               onClick={handleClose}
-              className="order-button"
+              className="basic-button"
             >
               닫기
             </Button>
-            <Button type="submit">저장</Button>
+            <Button type="submit" className="basic-button">저장</Button>
           </div>
         </Form>
       </Modal.Body>
