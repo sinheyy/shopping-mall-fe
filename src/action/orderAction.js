@@ -36,7 +36,18 @@ const getOrder = () => async (dispatch) => {
     dispatch(commonUiActions.showToastMessage(error.message, "error"));
   }
 };
-const getOrderList = (query) => async (dispatch) => { };
+const getOrderList = (query) => async (dispatch) => {
+  try {
+    dispatch({ type: types.GET_ORDER_LIST_REQUEST });
+    const response = await api.get("/order", { params: { ...query } });
+    if (response.status === 200) {
+      dispatch({ type: types.GET_ORDER_LIST_SUCCESS, payload: response.data });
+    }
+  } catch (error) {
+    dispatch({ type: types.GET_ORDER_LIST_FAIL, payload: error.message });
+    dispatch(commonUiActions.showToastMessage(error.message, "error"));
+  }
+};
 
 const updateOrder = (id, status) => async (dispatch) => { };
 

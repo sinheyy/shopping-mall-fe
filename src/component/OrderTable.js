@@ -2,7 +2,9 @@ import React from "react";
 import { Table, Badge } from "react-bootstrap";
 import { badgeBg } from "../constants/order.constants";
 import { currencyFormat } from "../utils/number";
+
 const OrderTable = ({ header, data, openEditForm }) => {
+
   return (
     <div className="overflow-x">
       <Table striped bordered hover>
@@ -29,10 +31,11 @@ const OrderTable = ({ header, data, openEditForm }) => {
                 ) : (
                   <th></th>
                 )}
+                <th>{item.contact.lastName + item.contact.firstName}</th>
 
                 <th>{item.shipTo.address + " " + item.shipTo.city}</th>
 
-                <th>{currencyFormat(item.totalPrice)}</th>
+                <th>{currencyFormat(item.totalPrice)}원</th>
                 <th>
                   <Badge bg={badgeBg[item.status]}>{item.status}</Badge>
                 </th>

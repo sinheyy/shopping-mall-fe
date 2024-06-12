@@ -9,12 +9,14 @@ import * as types from "../constants/order.constants";
 import ReactPaginate from "react-paginate";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import { commonUiActions } from "../action/commonUiAction";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const AdminOrderPage = () => {
   const navigate = useNavigate();
   const [query, setQuery] = useSearchParams();
   const dispatch = useDispatch();
   const orderList = useSelector((state) => state.order.orderList);
+  const { loading } = useSelector((state) => state.order);
   const [searchQuery, setSearchQuery] = useState({
     page: query.get("page") || 1,
     ordernum: query.get("ordernum") || "",
@@ -23,13 +25,14 @@ const AdminOrderPage = () => {
   const totalPageNum = useSelector((state) => state.order.totalPageNum);
   const tableHeader = [
     "#",
-    "Order#",
-    "Order Date",
-    "User",
-    "Order Item",
-    "Address",
-    "Total Price",
-    "Status",
+    "주문번호",
+    "주문날짜",
+    "주문자",
+    "주문 상품",
+    "받는분",
+    "주소",
+    "결제 금액",
+    "주문상태",
   ];
 
   useEffect(() => {
@@ -66,23 +69,32 @@ const AdminOrderPage = () => {
           <SearchBox
             searchQuery={searchQuery}
             setSearchQuery={setSearchQuery}
-            placeholder="오더번호"
+            placeholder="주문번호"
             field="ordernum"
           />
         </div>
 
-        <OrderTable
-          header={tableHeader}
-          data={orderList}
-          openEditForm={openEditForm}
-        />
+        {loading ?
+          (
+            <div className='loading'><ClipLoader color="#FB6D33" loading={loading} size={100} /></div>
+          )
+          :
+          (
+            <OrderTable
+              header={tableHeader}
+              data={orderList}
+              openEditForm={openEditForm}
+            />
+          )
+        }
+
         <ReactPaginate
-          nextLabel="next >"
+          nextLabel=">"
           onPageChange={handlePageClick}
           pageRangeDisplayed={5}
           pageCount={totalPageNum}
           forcePage={searchQuery.page - 1}
-          previousLabel="< previous"
+          previousLabel="<"
           renderOnZeroPageCount={null}
           pageClassName="page-item"
           pageLinkClassName="page-link"
@@ -95,11 +107,14 @@ const AdminOrderPage = () => {
           breakLinkClassName="page-link"
           containerClassName="pagination"
           activeClassName="active"
+          activeLinkClassName="active-link"
+          disabledClassName="disabled"
+          disabledLinkClassName="disabled-link"
           className="display-center list-style-none"
         />
       </Container>
 
-      {open && <OrderDetailDialog open={open} handleClose={handleClose} />}
+      {/* {open && <OrderDetailDialog open={open} handleClose={handleClose} />} */}
     </div>
   );
 };
