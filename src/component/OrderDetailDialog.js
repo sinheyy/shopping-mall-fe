@@ -60,7 +60,7 @@ const OrderDetailDialog = ({ open, handleClose }) => {
             </thead>
             <tbody>
               {selectedOrder.items.length > 0 &&
-                selectedOrder.items.map((item) => (
+                selectedOrder.items.map((item, index) => (
                   <tr key={item._id}>
                     <td>{item._id}</td>
                     <td>{item.productId.name}</td>

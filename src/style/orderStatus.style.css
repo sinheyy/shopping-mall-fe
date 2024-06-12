@@ -57,6 +57,15 @@
     font-family: 'GmarketSansMedium';
 }
 
+.order-detail-button{
+    border: none;
+    background-color: transparent;
+    font-family: 'GmarketSansMedium';
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 @media screen and (max-width: 63rem) {
     .order-info {
         margin-left: 20px;

@@ -2,11 +2,28 @@ import React from "react";
 import { Row, Col, Badge } from "react-bootstrap";
 import { badgeBg } from "../constants/order.constants";
 import { currencyFormat } from "../utils/number";
+import MyOrderDetailDialog from "../component/MyOrderDetailDialog";
+import { useState } from "react";
 
 const OrderStatusCard = ({ item }) => {
+  const [open, setOpen] = useState(false);
+
+  const openEditForm = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
     <div>
-      <Row className="order-date">[{item.createdAt.slice(0, 10)}]</Row>
+      <Row className="order-date">
+        <Col lg={10}>[{item.createdAt.slice(0, 10)}]</Col>
+        <Col lg={2}>
+          <button className="order-detail-button" onClick={openEditForm}>더보기</button>
+        </Col>
+      </Row>
       <Row className="status-card">
         <Col xs={2}>
           <img
@@ -29,6 +46,8 @@ const OrderStatusCard = ({ item }) => {
           <Badge bg={badgeBg[item.status]}>{item.status}</Badge>
         </Col>
       </Row>
+
+      {open && <MyOrderDetailDialog open={open} handleClose={handleClose} order={item} />}
     </div>
   );
 };

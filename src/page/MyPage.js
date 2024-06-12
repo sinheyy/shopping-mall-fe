@@ -15,6 +15,7 @@ const MyPage = () => {
     dispatch(orderActions.getOrder());
   }, []);
 
+
   // 오더리스트가 없다면? 주문한 상품이 없습니다 메세지 보여주기
   if (orderList?.length === 0) {
     return (
@@ -29,6 +30,8 @@ const MyPage = () => {
         {orderList.map((item) => (
           <OrderStatusCard item={item} key={item._id} className="status-card-container" />
         ))}
+
+
       </Container>
     );
   }
