@@ -50,9 +50,11 @@
 }
 
 .no-order-box {
-    background-color: white;
+    background-color: transparent;
     text-align: center;
-    padding: 20px
+    padding: 20px;
+    font-size: 1.2rem;
+    font-family: 'GmarketSansMedium';
 }
 
 @media screen and (max-width: 63rem) {
