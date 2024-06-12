@@ -49,7 +49,24 @@ const getOrderList = (query) => async (dispatch) => {
   }
 };
 
-const updateOrder = (id, status) => async (dispatch) => { };
+const updateOrder = (id, status) => async (dispatch) => {
+  try {
+    dispatch({ type: types.UPDATE_ORDER_REQUEST });
+    const response = await api.put(`/order/${id}`, { status });
+
+    if (response.status === 200) {
+      dispatch({ type: types.UPDATE_ORDER_SUCCESS, payload: response.data });
+      dispatch(commonUiActions.showToastMessage(`주문 상태가 ${status}로 변경되었습니다`, "success"));
+      dispatch(getOrderList({ page: 1, name: "" }));
+    }
+    else {
+      throw new Error(response.error);
+    }
+  } catch (error) {
+    dispatch({ type: types.UPDATE_ORDER_FAIL, payload: error.message });
+    dispatch(commonUiActions.showToastMessage(error.message, "error"));
+  }
+};
 
 export const orderActions = {
   createOrder,
