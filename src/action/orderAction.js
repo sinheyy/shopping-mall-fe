@@ -21,7 +21,21 @@ const createOrder = (payload, navigate) => async (dispatch) => {
   }
 };
 
-const getOrder = () => async (dispatch) => { };
+const getOrder = () => async (dispatch) => {
+  try {
+    dispatch({ type: types.GET_ORDER_REQUEST });
+    const response = await api.get("/order/me");
+    console.log("getOrder 했을 때 response!!! ", response);
+    if (response.status === 200) {
+      dispatch({ type: types.GET_ORDER_SUCCESS, payload: response.data });
+    } else {
+      throw new Error(response.error);
+    }
+  } catch (error) {
+    dispatch({ type: types.GET_ORDER_FAIL, payload: error.message });
+    dispatch(commonUiActions.showToastMessage(error.message, "error"));
+  }
+};
 const getOrderList = (query) => async (dispatch) => { };
 
 const updateOrder = (id, status) => async (dispatch) => { };

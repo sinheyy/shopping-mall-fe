@@ -1,54 +1,76 @@
-.status-card{
-    background-color: white;
-    padding:10px;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+.order-date{
+    font-family: 'GmarketSansMedium';
+}
+
+.status-card {
+    background-color: transparent;
+    padding: 10px;
+    border-top: 2px solid black;
     margin-bottom: 20px;
+    font-family: 'SUIT-Regular';
 }
-.status-card:hover{
-    background-color: rgba(238, 30, 30, 0.148);
+
+.status-card:hover {
+    background-color: rgba(250, 85, 0, 0.148);
 }
-.vertical-middle{
+
+.vertical-middle {
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
-.status-card-container{
+
+.status-card-container {
     margin-bottom: 20px;
     max-width: 750px;
-   
+
 }
 
 
 
 
-.order-button-area{
+.order-button-area {
     margin-top: 20px;
     display: flex;
     justify-content: flex-end;
 }
-.order-button-area button{
+
+.order-button-area button {
     margin-left: 20px;
 }
 
-.text-align-center{
+.text-align-center {
     text-align: center;
     margin-bottom: 5px;
 }
-.text-12{
+
+.text-12 {
     font-size: 12px;
 
 }
 
-.no-order-box{
+.no-order-box {
     background-color: white;
     text-align: center;
-    padding:20px
+    padding: 20px
 }
 
 @media screen and (max-width: 63rem) {
-   .order-info{
-    margin-left: 20px;
+    .order-info {
+        margin-left: 20px;
     }
-  }
+}
 
-  
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SUIT-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}

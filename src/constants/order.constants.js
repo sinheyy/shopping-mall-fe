@@ -13,8 +13,8 @@ export const UPDATE_ORDER_REQUEST = "UPDATE_ORDER_REQUEST";
 export const UPDATE_ORDER_SUCCESS = "UPDATE_ORDER_SUCCESS";
 export const UPDATE_ORDER_FAIL = "UPDATE_ORDER_FAIL";
 export const badgeBg = {
-  preparing: "primary",
-  shipping: "warning",
-  refund: "danger",
-  delivered: "success",
+  "상품준비중": "primary",
+  "배송중": "warning",
+  "환불완료": "danger",
+  "배송완료": "success",
 };
