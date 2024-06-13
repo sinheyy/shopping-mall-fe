@@ -6,10 +6,11 @@ import { orderActions } from "../action/orderAction";
 import OrderStatusCard from "../component/OrderStatusCard";
 import "../style/orderStatus.style.css";
 import { useNavigate } from "react-router";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const MyPage = () => {
   const dispatch = useDispatch();
-  const { orderList } = useSelector((state) => state.order);
+  const { loading, orderList } = useSelector((state) => state.order);
   const { user } = useSelector((state) => state.user);
   const navigate = useNavigate();
 
@@ -23,25 +24,32 @@ const MyPage = () => {
     navigate("/login");
   }
 
-  // 오더리스트가 없다면? 주문한 상품이 없습니다 메세지 보여주기
-  if (orderList?.length === 0) {
-    return (
-      <Container className="no-order-box">
-        <div>주문 내역이 없습니다.</div>
-      </Container>
-    );
+  if (loading) {
+    return (<div className='loading' > <ClipLoader color="#FB6D33" loading={loading} size={100} /></div>);
   }
   else {
-    return (
-      <Container className="status-card-container">
-        {orderList.map((item) => (
-          <OrderStatusCard item={item} key={item._id} className="status-card-container" />
-        ))}
+    // 오더리스트가 없다면? 주문한 상품이 없습니다 메세지 보여주기
+    if (orderList?.length === 0) {
+      return (
+        <Container className="no-order-box">
+          <div>주문 내역이 없습니다.</div>
+        </Container>
+      );
+    }
+    else {
+      return (
+        <Container className="status-card-container">
+          {orderList.map((item) => (
+            <OrderStatusCard item={item} key={item._id} className="status-card-container" />
+          ))}
 
 
-      </Container>
-    );
+        </Container>
+      );
+    }
+
   }
+
 
 };
 

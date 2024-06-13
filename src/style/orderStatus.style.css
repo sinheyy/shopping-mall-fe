@@ -66,6 +66,11 @@
     align-items: center;
 }
 
+.loading {
+    display: flex;
+    justify-content: center;
+}
+
 @media screen and (max-width: 63rem) {
     .order-info {
         margin-left: 20px;
