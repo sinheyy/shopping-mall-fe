@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { userActions } from "../action/userAction";
 import ClipLoader from "react-spinners/ClipLoader";
+import { GoogleLogin } from '@react-oauth/google';
 import "../style/login.style.css";
 
 const Login = () => {
@@ -29,6 +30,8 @@ const Login = () => {
 
   const handleGoogleLogin = async (googleData) => {
     // 구글로 로그인 하기
+    console.log("hehehe", googleData);
+    dispatch(userActions.loginWithGoogle(googleData.credential));
   };
 
   // user가 있으면 메인 페이지로 이동 - 이미 로그인한 유저는 로그인 페이지에 못 들어오게 막기 위함
@@ -88,7 +91,14 @@ const Login = () => {
 
               <div className="text-align-center mt-2">
                 <p>-외부 계정으로 로그인하기-</p>
-                <div className="display-center"></div>
+                <div className="display-center">
+                  <GoogleLogin
+                    onSuccess={handleGoogleLogin}
+                    onError={() => {
+                      console.log('Login Failed');
+                    }}
+                  />
+                </div>
               </div>
             </Form>
           </Container >
