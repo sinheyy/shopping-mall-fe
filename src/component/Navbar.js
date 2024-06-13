@@ -56,10 +56,20 @@ const Navbar = ({ user }) => {
       navigate(`?name=${event.target.value}`);
     }
   };
+
   const logout = () => {
     dispatch(userActions.logout());
     dispatch(cartActions.logout());
   };
+
+  const goToLogin = () => {
+    if (!user) {
+      navigate("/login");
+    } else {
+      navigate("/account/purchase")
+    }
+  }
+
   return (
     <div>
       {showSearchBox && (
@@ -126,7 +136,7 @@ const Navbar = ({ user }) => {
               )}
             </div>
             <div
-              onClick={() => navigate("/account/purchase")}
+              onClick={() => goToLogin()}
               className="nav-icon"
             >
               <FontAwesomeIcon icon={faBox} />
