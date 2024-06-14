@@ -34,13 +34,6 @@ const Navbar = ({ user }) => {
   let [width, setWidth] = useState(0);
   let navigate = useNavigate();
 
-  useEffect(() => {
-    if (user) {
-      console.log("getCartQty 호출");
-      dispatch(cartActions.getCartQty());
-    }
-  }, [cartItemQty]);
-
   const onCheckEnter = (event) => {
     if (event.key === "Enter") {
 
@@ -59,7 +52,7 @@ const Navbar = ({ user }) => {
 
   const logout = () => {
     dispatch(userActions.logout());
-    dispatch(cartActions.logout());
+    dispatch(cartActions.clearCart());
   };
 
   const goToLogin = () => {

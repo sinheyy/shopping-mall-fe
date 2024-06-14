@@ -18,7 +18,7 @@ const initialState = {
 function cartReducer(state = initialState, action) {
   const { type, payload } = action;
   switch (type) {
-    case types.LOGOUT:
+    case types.CLEAR_CART:
       return {
         ...state, loading: false, cartItemQty: 0, cartList: [], totalPrice: 0,
         totalSalePrice: 0,
@@ -65,8 +65,9 @@ function cartReducer(state = initialState, action) {
     case types.ADD_TO_CART_FAIL:
     case types.GET_CART_LIST_FAIL:
     case types.DELETE_CART_ITEM_FAIL:
-    case types.GET_CART_QTY_FAIL:
       return { ...state, loading: false, error: payload };
+    case types.GET_CART_QTY_FAIL:
+      return { ...state, loading: false, cartList: [], error: payload };
     default:
       return state;
   }

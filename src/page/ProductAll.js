@@ -16,7 +16,6 @@ const ProductAll = () => {
   const [query, setQuery] = useSearchParams();
   const name = query.get("name");
   const page = query.get("page");
-  const [searchResult, setSearchResult] = useState(true);
 
   // 처음 로딩하면 상품리스트 
   //상품리스트 가져오기 (url쿼리 맞춰서)
@@ -36,21 +35,7 @@ const ProductAll = () => {
     const navigateQuery = params.toString();
     console.log("qqqq바뀜!", navigateQuery);
 
-    navigate("?" + navigateQuery);
-
   }, [name]);
-
-  useEffect(() => {
-    console.log("검색어에 해당하는 리스트가 없어용 ", productList);
-    console.log("검색어에 해당하는 리스트가 없어용-rllen ", productList.length);
-    if (productList.length == 0) {
-      setSearchResult(true);
-    }
-    else {
-      setSearchResult(false);
-    }
-  }, [productList])
-
 
   return (
     <>
@@ -59,7 +44,7 @@ const ProductAll = () => {
           (<div className='loading' > <ClipLoader color="#FB6D33" loading={loading} size={100} /></div>)
           :
           (
-            searchResult ?
+            (productList.length === 0) ?
               (
                 <div className="no-search-result">검색 결과가 없습니다.</div>
               )

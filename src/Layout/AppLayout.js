@@ -9,6 +9,7 @@ import { userActions } from "../action/userAction";
 import { commonUiActions } from "../action/commonUiAction";
 import Footer from "../component/Footer";
 import { cartActions } from "../action/cartAction";
+import { orderActions } from "../action/orderAction";
 
 const AppLayout = ({ children }) => {
   const location = useLocation();
@@ -23,8 +24,8 @@ const AppLayout = ({ children }) => {
 
   useEffect(() => {
     if (user) {
-      console.log("getCartQty 호출");
       dispatch(cartActions.getCartQty());
+      dispatch(orderActions.getOrderList());
     }
   }, [user]);
 

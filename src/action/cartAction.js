@@ -63,7 +63,7 @@ const updateQty = (id, value) => async (dispatch) => {
     else {
       throw new Error(response.error);
     }
-    
+
 
   } catch (error) {
     dispatch({ type: types.UPDATE_CART_ITEM_FAIL, payload: error.message });
@@ -76,25 +76,21 @@ const getCartQty = () => async (dispatch) => {
     dispatch({ type: types.GET_CART_QTY_REQUEST });
     const response = await api.get("/cart/qty");
     console.log("getCartQty ", response);
-    if (response.status === 200) {
-      dispatch({
-        type: types.GET_CART_QTY_SUCCESS, payload: response.data.qty
-      });
-    }
-    else {
-      throw new Error(response.error);
-    }
+
+    dispatch({
+      type: types.GET_CART_QTY_SUCCESS, payload: response.data.qty
+    });
 
   } catch (error) {
     dispatch({ type: types.GET_CART_QTY_FAIL, payload: error.message });
-    dispatch(commonUiActions.showToastMessage(error.message, "error"));
+    //dispatch(commonUiActions.showToastMessage(error.message, "error"));
   }
 };
 
 // navbar logout 클릭시
-const logout = () => async (dispatch) => {
+const clearCart = () => async (dispatch) => {
   // user 정보 초기화
-  dispatch({ type: types.LOGOUT });
+  dispatch({ type: types.CLEAR_CART });
 };
 
 export const cartActions = {
@@ -103,5 +99,5 @@ export const cartActions = {
   deleteCartItem,
   updateQty,
   getCartQty,
-  logout,
+  clearCart,
 };
