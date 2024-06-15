@@ -1,6 +1,7 @@
 import api from "../utils/api";
 import * as types from "../constants/user.constants";
 import { commonUiActions } from "./commonUiAction";
+import { cartActions } from "./cartAction";
 
 const loginWithToken = () => async (dispatch) => {
   try {
@@ -27,7 +28,7 @@ const loginWithEmail = ({ email, password }) => async (dispatch) => {
 
     if (response.status === 200) {
       sessionStorage.setItem("token", response.data.token);
-      dispatch({ type: types.LOGIN_SUCCESS, payload: response.data });
+      dispatch({ type: types.LOGIN_SUCCESS, payload: response.data });;
     }
     else {
       throw new Error(response.error);

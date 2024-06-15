@@ -17,11 +17,13 @@ const MyPage = () => {
   //오더리스트 들고오기
   useEffect(() => {
     dispatch(orderActions.getOrder());
-  }, []);
+  }, [dispatch]);
 
-  if (!user) {
-    navigate("/login");
-  }
+  useEffect(() => {
+    if (!user) {
+      navigate("/login");
+    }
+  }, [user]);
 
   if (loading) {
     return (<div className='loading' > <ClipLoader color="#FB6D33" loading={loading} size={100} /></div>);

@@ -1,4 +1,4 @@
-.order-date{
+.order-date {
     font-family: 'GmarketSansMedium';
 }
 
@@ -57,9 +57,10 @@
     font-family: 'GmarketSansMedium';
 }
 
-.order-detail-button{
+.order-detail-button {
     border: none;
-    background-color: transparent;
+    background-color: black;
+    color: white;
     font-family: 'GmarketSansMedium';
     display: flex;
     justify-content: center;

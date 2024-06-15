@@ -8,29 +8,15 @@ import ClipLoader from "react-spinners/ClipLoader";
 
 const ProductAll = () => {
   const dispatch = useDispatch();
-  const loading = useSelector((state) => state.user.loading);
-  const { productList } = useSelector((state) => state.product);
+  const { productList, loading, error } = useSelector((state) => state.product);
   const [query, setQuery] = useSearchParams();
-  const name = query.get("name");
+  const searchKeyword = query.get("name") || "";
 
   // 처음 로딩하면 상품리스트 
   //상품리스트 가져오기 (url쿼리 맞춰서)
   useEffect(() => {
-    dispatch(productActions.getProductList({ name }));
-  }, [query])
-
-  useEffect(() => {
-    //검색어나 페이지가 바뀌면 url바꿔주기 (검색어또는 페이지가 바뀜 => url 바꿔줌=> url쿼리 읽어옴=> 이 쿼리값 맞춰서  상품리스트 가져오기)
-
-    // URLSearchParams - 객체를 쿼리로 만들어줌
-    const searchQuery = {
-      page: query.get("page") || 1,
-      name: query.get("name") || "",
-    };
-    const params = new URLSearchParams(searchQuery);
-    const navigateQuery = params.toString();
-
-  }, [name]);
+    dispatch(productActions.getProductList({ name: searchKeyword }));
+  }, [dispatch, searchKeyword])
 
   return (
     <>

@@ -8,7 +8,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { userActions } from "../action/userAction";
 import Footer from "../component/Footer";
 import { cartActions } from "../action/cartAction";
-import { orderActions } from "../action/orderAction";
 
 const AppLayout = ({ children }) => {
   const location = useLocation();
@@ -24,9 +23,8 @@ const AppLayout = ({ children }) => {
   useEffect(() => {
     if (user) {
       dispatch(cartActions.getCartQty());
-      dispatch(orderActions.getOrderList());
     }
-  }, [user]);
+  }, [user, dispatch]);
 
   return (
     <>
