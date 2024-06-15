@@ -4,7 +4,6 @@ const initialState = {
   error: "",
   productList: [],
   totalPageNum: 1,
-  searchKeyword: "",
   selectedProduct: null,
 };
 
@@ -29,8 +28,6 @@ function productReducer(state = initialState, action) {
     case types.PRODUCT_DELETE_FAIL:
     case types.GET_PRODUCT_DETAIL_FAIL:
       return { ...state, loading: false, error: payload };
-    case types.SET_SEARCH_KEYWORD:
-      return { ...state, searchKeyword: payload };
     case types.SET_SELECTED_PRODUCT:
     case types.GET_PRODUCT_DETAIL_SUCCESS:
       return { ...state, loading: false, selectedProduct: payload };

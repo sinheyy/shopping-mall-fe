@@ -1,7 +1,6 @@
 import api from "../utils/api";
 import * as types from "../constants/cart.constants";
 import { commonUiActions } from "../action/commonUiAction";
-import { responsive } from "@cloudinary/react";
 
 const addToCart = ({ id, size }) => async (dispatch) => {
   try {
@@ -24,7 +23,6 @@ const getCartList = () => async (dispatch) => {
   try {
     dispatch({ type: types.GET_CART_LIST_REQUEST });
     const response = await api.get("/cart");
-    console.log("cart List 불러오기 ", response);
 
     if (response.status === 200) {
       dispatch({ type: types.GET_CART_LIST_SUCCESS, payload: response.data.data });
@@ -43,7 +41,6 @@ const deleteCartItem = (id) => async (dispatch) => {
     const response = await api.delete(`/cart/${id}`);
 
     dispatch({ type: types.DELETE_CART_ITEM_SUCCESS, payload: response.data.cartItemQty });
-    console.log("deleteCartItem ", response);
     dispatch(commonUiActions.showToastMessage("상품이 성공적으로 삭제되었습니다.", "success"));
     dispatch(getCartList());
 
@@ -75,7 +72,6 @@ const getCartQty = () => async (dispatch) => {
   try {
     dispatch({ type: types.GET_CART_QTY_REQUEST });
     const response = await api.get("/cart/qty");
-    console.log("getCartQty ", response);
 
     dispatch({
       type: types.GET_CART_QTY_SUCCESS, payload: response.data.qty
@@ -83,13 +79,10 @@ const getCartQty = () => async (dispatch) => {
 
   } catch (error) {
     dispatch({ type: types.GET_CART_QTY_FAIL, payload: error.message });
-    //dispatch(commonUiActions.showToastMessage(error.message, "error"));
   }
 };
 
-// navbar logout 클릭시
 const clearCart = () => async (dispatch) => {
-  // user 정보 초기화
   dispatch({ type: types.CLEAR_CART });
 };
 

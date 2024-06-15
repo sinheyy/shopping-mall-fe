@@ -48,10 +48,6 @@ const ProductDetail = () => {
 
   };
 
-  //카트에러가 있으면 에러메세지 보여주기
-
-  //에러가 있으면 에러메세지 보여주기
-
   useEffect(() => {
     //상품 디테일 정보 가져오기
     dispatch(productActions.getProductDetail(id));
@@ -76,7 +72,7 @@ const ProductDetail = () => {
             <div className={`pickbox${pickIsTrue ? "_switched" : ""}`}>{selectedProduct.choice == true ? "[MD PICK]" : ""}</div>
             <div className='detail-product-brand'><b>{selectedProduct.brand}</b></div>
             <br />
-            <div className='detail-product-name'>{selectedProduct.name}<h className='detail-product-new'>{selectedProduct.isNew == true ? "NEW" : ""}</h></div>
+            <div className='detail-product-name'>{selectedProduct.name}<span className='detail-product-new'>{selectedProduct.isNew == true ? "NEW" : ""}</span></div>
             <br />
             <div className='detail-product-price'>정상가<span> {currencyFormat(selectedProduct.price)} 원 </span></div>
             <div className='detail-product-saleprice'>할인가<b> {currencyFormat(selectedProduct.salePrice)} </b>원 <b className='detail-product-saleper'>{Math.round((selectedProduct.price - selectedProduct.salePrice) / selectedProduct.price * 100)}%</b></div>

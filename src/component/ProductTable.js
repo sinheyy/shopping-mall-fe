@@ -2,6 +2,7 @@ import React from "react";
 import Button from "react-bootstrap/Button";
 import Table from "react-bootstrap/Table";
 import { currencyFormat } from "../utils/number";
+
 const ProductTable = ({ header, data, deleteItem, openEditForm }) => {
   return (
     <div className="overflow-x">

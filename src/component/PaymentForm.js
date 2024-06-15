@@ -3,11 +3,7 @@ import { Col, Form, Row } from "react-bootstrap";
 import Cards from "react-credit-cards-2";
 import 'react-credit-cards-2/dist/es/styles-compiled.css';
 
-const PaymentForm = ({
-  handleInputFocus,
-  cardValue,
-  handlePaymentInfoChange,
-}) => {
+const PaymentForm = ({ handleInputFocus, cardValue, handlePaymentInfoChange, }) => {
   return (
     <Row className="display-flex">
       <Col md={6} xs={12}>

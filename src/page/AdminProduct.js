@@ -54,7 +54,6 @@ const AdminProduct = () => {
     // URLSearchParams - 객체를 쿼리로 만들어줌
     const params = new URLSearchParams(searchQuery);
     const query = params.toString();
-    console.log("qqqq", query);
 
     navigate("?" + query);
 
@@ -68,17 +67,15 @@ const AdminProduct = () => {
     else {
       dispatch(commonUiActions.showToastMessage("상품 삭제가 취소되었습니다.", "success"));
     }
-
   };
 
   const openEditForm = (product) => {
     //edit모드로 설정하고
     setMode("edit");
-    // console.log("product, : ", product);
 
     // 선택된 아이템 표시하고 수정다이얼로그 열어주기
     dispatch({ type: types.SET_SELECTED_PRODUCT, payload: product });
-    // console.log("dispatch 완료, : ", product);
+
     setShowDialog(true);
   };
 
@@ -91,7 +88,6 @@ const AdminProduct = () => {
 
   const handlePageClick = ({ selected }) => {
     //  쿼리에 페이지값 바꿔주기 - 실제페이지는 selected + 1
-    //console.log("selected", selected);
     setSearchQuery({ ...searchQuery, page: selected + 1 });
   };
 
@@ -125,13 +121,6 @@ const AdminProduct = () => {
             />
           )
         }
-
-        {/* <ProductTable
-          header={tableHeader}
-          data={productList}
-          deleteItem={deleteItem}
-          openEditForm={openEditForm}
-        /> */}
 
         <ReactPaginate
           nextLabel=">"

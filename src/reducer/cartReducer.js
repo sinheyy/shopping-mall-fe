@@ -1,9 +1,4 @@
 import * as types from "../constants/cart.constants";
-import {
-  LOGIN_SUCCESS,
-  GOOGLE_LOGIN_SUCCESS,
-  LOGOUT,
-} from "../constants/user.constants";
 
 const initialState = {
   loading: false,

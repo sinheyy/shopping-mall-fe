@@ -1,22 +1,10 @@
-import React, { useState } from "react";
-import { Form, Modal, Button, Row, Col, Table } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
+import { Modal, Button, Row, Col, Table } from "react-bootstrap";
 
 import "../style/adminOrder.style.css";
-import { ORDER_STATUS } from "../constants/order.constants";
-import { orderActions } from "../action/orderAction";
 import { currencyFormat } from "../utils/number";
 
 const MyOrderDetailDialog = ({ open, handleClose, order }) => {
-    const [orderStatus, setOrderStatus] = useState(order.status);
-    const dispatch = useDispatch();
-
-    const handleStatusChange = (event) => {
-        setOrderStatus(event.target.value);
-    };
-    const submitStatus = () => {
-        handleClose();
-    };
 
     if (!order) {
         return <></>;

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Form, Modal, Button, Row, Col, Table } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-
 import "../style/adminOrder.style.css";
 import { ORDER_STATUS } from "../constants/order.constants";
 import { orderActions } from "../action/orderAction";
@@ -20,7 +19,6 @@ const OrderDetailDialog = ({ open, handleClose }) => {
     handleClose();
   };
 
-  console.log("셀레ㄱ디트동더", selectedOrder);
   if (!selectedOrder) {
     return <></>;
   }

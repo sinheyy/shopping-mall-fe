@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-regular-svg-icons";
 import {
   faBars,
   faBox,
-  faCropSimple,
   faSearch,
   faShoppingBag,
 } from "@fortawesome/free-solid-svg-icons";
@@ -14,7 +13,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { userActions } from "../action/userAction";
 import * as types from "../constants/product.constants";
 import { cartActions } from "../action/cartAction";
-import { orderActions } from "../action/orderAction";
 
 const Navbar = ({ user }) => {
   const dispatch = useDispatch();
@@ -38,15 +36,10 @@ const Navbar = ({ user }) => {
   const onCheckEnter = (event) => {
     if (event.key === "Enter") {
 
-
       if (event.target.value === "") {
-        dispatch({ type: types.SET_SEARCH_KEYWORD, payload: "" });
         return navigate("/");
       }
 
-      let searchKeyword = event.target.value;
-      dispatch({ type: types.SET_SEARCH_KEYWORD, payload: searchKeyword });
-      console.log("tt", searchKeyword);
       navigate(`?name=${event.target.value}`);
     }
   };

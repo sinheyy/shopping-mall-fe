@@ -19,7 +19,6 @@ const MyPage = () => {
     dispatch(orderActions.getOrder());
   }, []);
 
-
   if (!user) {
     navigate("/login");
   }
@@ -42,8 +41,6 @@ const MyPage = () => {
           {orderList.map((item) => (
             <OrderStatusCard item={item} key={item._id} className="status-card-container" />
           ))}
-
-
         </Container>
       );
     }

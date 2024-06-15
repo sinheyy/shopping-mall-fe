@@ -53,7 +53,7 @@ const RegisterPage = () => {
   const handleChange = (event) => {
     // 값을 읽어서 FormData에 넣어주기
     const { id, value, checked } = event.target;
-    // console.log(id, value, checked);
+    
     if (id == "policy") {
       setFormData({ ...formData, [id]: checked });
     }

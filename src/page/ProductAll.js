@@ -1,21 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import ProductCard from "../component/ProductCard";
 import { Row, Col, Container } from "react-bootstrap";
-import { useSearchParams, useNavigate } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { productActions } from "../action/productAction";
 import ClipLoader from "react-spinners/ClipLoader";
 
 const ProductAll = () => {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.user.loading);
-  const error = useSelector((state) => state.product.error);
-  const searchKeyword = useSelector((state) => state.product.searchKeyword);
-  const { productList, totalPageNum } = useSelector((state) => state.product);
+  const { productList } = useSelector((state) => state.product);
   const [query, setQuery] = useSearchParams();
   const name = query.get("name");
-  const page = query.get("page");
 
   // 처음 로딩하면 상품리스트 
   //상품리스트 가져오기 (url쿼리 맞춰서)
@@ -33,7 +29,6 @@ const ProductAll = () => {
     };
     const params = new URLSearchParams(searchQuery);
     const navigateQuery = params.toString();
-    console.log("qqqq바뀜!", navigateQuery);
 
   }, [name]);
 

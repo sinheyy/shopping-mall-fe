@@ -6,8 +6,6 @@ import CloudinaryUploadWidget2 from "../utils/CloudinaryUploadWidget2";
 import { productActions } from "../action/productAction";
 import { CATEGORY, STATUS, SIZE, CHOICE } from "../constants/product.constants";
 import "../style/adminProduct.style.css";
-import * as types from "../constants/product.constants";
-import { commonUiActions } from "../action/commonUiAction";
 
 const InitialFormData = {
   name: "",
@@ -28,7 +26,6 @@ const InitialFormData = {
 
 const NewItemDialog = ({ mode, showDialog, setShowDialog }) => {
   const selectedProduct = useSelector((state) => state.product.selectedProduct);
-  const { error } = useSelector((state) => state.product);
   const [formData, setFormData] = useState(
     mode === "new" ? { ...InitialFormData } : selectedProduct
   );
@@ -36,24 +33,14 @@ const NewItemDialog = ({ mode, showDialog, setShowDialog }) => {
   const dispatch = useDispatch();
   const [stockError, setStockError] = useState(false);
 
-  // console.log("stock", stock);
-
   const handleClose = () => {
-    //모든걸 초기화시키고;
     setFormData({ ...InitialFormData });
     setStock([]);
-
-    // console.log("ffff", formData);
-
-    // 다이얼로그 닫아주기
     setShowDialog(false);
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log("formdata ????", formData);
-    console.log("formdata", stock);
-    // [["s", "3"], ["m", 4]] -> {s : 3, m : 4} array를 객체로
 
     //재고를 입력했는지 확인, 아니면 에러
     if (stock.length == 0) {
@@ -65,8 +52,6 @@ const NewItemDialog = ({ mode, showDialog, setShowDialog }) => {
     const totalStock = stock.reduce((total, item) => {
       return { ...total, [item[0]]: parseInt(item[1]) }
     }, {});
-
-    console.log("totalstock", totalStock);
 
     if (mode === "new") {
       //새 상품 만들기
@@ -83,7 +68,6 @@ const NewItemDialog = ({ mode, showDialog, setShowDialog }) => {
     //form에 데이터 넣어주기
     const { id, value } = event.target;
     setFormData({ ...formData, [id]: value });
-
   };
 
   const addStock = () => {
@@ -145,9 +129,7 @@ const NewItemDialog = ({ mode, showDialog, setShowDialog }) => {
     if (showDialog) {
       if (mode === "edit") {
         // 선택된 데이터값 불러오기 (재고 형태 객체에서 어레이로 바꾸기)
-        // console.log("tttttttttt selectedProduct : ", selectedProduct);
         setFormData(selectedProduct);
-        // console.log("selectedProduct-keys", selectedProduct.stock);
         const stockArray = Object.keys(selectedProduct.stock).map((size) => [size, selectedProduct.stock[size]]);  // Object.keys하면 [s, m] - array로 key 값만 나옴
         setStock(stockArray);
       } else {
@@ -157,12 +139,6 @@ const NewItemDialog = ({ mode, showDialog, setShowDialog }) => {
       }
     }
   }, [showDialog]);
-
-  useEffect(()=>{
-    console.log("selectedProduct 바뀜! 여긴 뉴아이템다이알로그", selectedProduct);
-  }, [selectedProduct]);
-
-  //에러나면 토스트 메세지 보여주기
 
   return (
     <Modal show={showDialog} onHide={handleClose} className="modal">

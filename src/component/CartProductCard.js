@@ -11,12 +11,10 @@ const CartProductCard = ({ item }) => {
   const dispatch = useDispatch();
 
   const handleQtyChange = (id, value) => {
-    //아이템 수량을 수정한다
     dispatch(cartActions.updateQty(id, value));
   };
 
   const deleteCart = (id) => {
-    //아이템을 지운다
     if (window.confirm("삭제하시겠습니까?")) {
       dispatch(cartActions.deleteCartItem(id));
     }
@@ -57,23 +55,6 @@ const CartProductCard = ({ item }) => {
           <div>합계 : <strong>{currencyFormat(item.productId.salePrice * item.qty)}</strong> 원</div>
           <div className="sort-row">
             수량 :
-            {/* <Form.Select
-              onChange={(event) => handleQtyChange(item._id, event.target.value)}
-              required
-              defaultValue={item.qty}
-              className="qty-dropdown"
-            >
-              <option value={1}>1</option>
-              <option value={2}>2</option>
-              <option value={3}>3</option>
-              <option value={4}>4</option>
-              <option value={5}>5</option>
-              <option value={6}>6</option>
-              <option value={7}>7</option>
-              <option value={8}>8</option>
-              <option value={9}>9</option>
-              <option value={10}>10</option>
-            </Form.Select> */}
             <Form.Control
               onChange={(event) =>
                 handleQtyChange(item._id, event.target.value)

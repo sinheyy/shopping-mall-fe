@@ -6,7 +6,6 @@ import Navbar from "../component/Navbar";
 import ToastMessage from "../component/ToastMessage";
 import { useDispatch, useSelector } from "react-redux";
 import { userActions } from "../action/userAction";
-import { commonUiActions } from "../action/commonUiAction";
 import Footer from "../component/Footer";
 import { cartActions } from "../action/cartAction";
 import { orderActions } from "../action/orderAction";
