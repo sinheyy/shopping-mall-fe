@@ -85,6 +85,10 @@ const clearCart = () => async (dispatch) => {
   dispatch({ type: types.CLEAR_CART });
 };
 
+const useCoupon = (couponCode) => async (dispatch) => {
+  dispatch({ type: types.USE_COUPON, payload: 10 });
+}
+
 export const cartActions = {
   addToCart,
   getCartList,
@@ -92,4 +96,5 @@ export const cartActions = {
   updateQty,
   getCartQty,
   clearCart,
+  useCoupon
 };

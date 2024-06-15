@@ -7,6 +7,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { orderActions } from "../action/orderAction";
 import { useNavigate } from "react-router";
 import { cc_expires_format } from "../utils/number";
+import { cartActions } from "../action/cartAction";
+import { commonUiActions } from "../action/commonUiAction";
 
 const PaymentPage = () => {
   const dispatch = useDispatch();
@@ -26,6 +28,8 @@ const PaymentPage = () => {
     city: "",
     zip: "",
   });
+  const [couponCode, setCouponCode] = useState(null);
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const { cartList, totalPrice, totalSalePrice, totalProductPrice } = useSelector((state) => state.cart);
   const { user } = useSelector((state) => state.user);
 
@@ -76,6 +80,24 @@ const PaymentPage = () => {
   const handleInputFocus = (e) => {
     setCardValue({ ...cardValue, focus: e.target.name });
   };
+
+  const handleCouponCode = (e) => {
+    setCouponCode(e.target.value);
+  };
+
+  const useCoupon = () => {
+    if (window.confirm("쿠폰을 사용하시겠습니까?")) {
+      if (couponCode === "DISCOUNT") {
+        dispatch(cartActions.useCoupon(couponCode));
+        setIsSubmitted(true);
+        dispatch(commonUiActions.showToastMessage("쿠폰 사용", "success"));
+      }
+      else {
+        dispatch(commonUiActions.showToastMessage("유효하지 않은 쿠폰입니다.", "error"));
+      }
+    }    
+
+  }
 
   //카트에 아이템이 없다면 다시 카트페이지로 돌아가기 (결제할 아이템이 없으니 결제페이지로 가면 안됌)
   if (cartList.length === 0) {
@@ -178,6 +200,20 @@ const PaymentPage = () => {
                 </Form.Group>
                 <div className="mobile-receipt-area">
                   <OrderReceipt cartList={cartList} totalPrice={totalPrice} totalSalePrice={totalSalePrice} totalProductPrice={totalProductPrice} />
+                </div>
+                <div>
+                  <h3 className="order-title">쿠폰 사용</h3>
+                  <div className='line' />
+                  <div>
+                    <span>쿠폰 코드 :</span>
+                    <Form.Control
+                      onChange={handleCouponCode}
+                      required
+                      name="coupon"
+                      disabled={isSubmitted}
+                    />
+                    <button onClick={useCoupon} disabled={isSubmitted}>사용</button>
+                  </div>
                 </div>
                 <div>
                   <div style={{ margin: "30px" }} />

@@ -63,6 +63,11 @@ function cartReducer(state = initialState, action) {
       return { ...state, loading: false, error: payload };
     case types.GET_CART_QTY_FAIL:
       return { ...state, loading: false, cartList: [], error: payload };
+    case types.USE_COUPON:
+      return {
+        ...state,
+        totalPrice: Math.ceil(state.totalPrice * (100 - payload) / 100),
+      };
     default:
       return state;
   }

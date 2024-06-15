@@ -14,3 +14,4 @@ export const GET_CART_QTY_REQUEST = "GET_CART_QTY_REQUEST";
 export const GET_CART_QTY_SUCCESS = "GET_CART_QTY_SUCCESS";
 export const GET_CART_QTY_FAIL = "GET_CART_QTY_FAIL";
 export const CLEAR_CART = "CLEAR_CART";
+export const USE_COUPON = "USE_COUPON";
