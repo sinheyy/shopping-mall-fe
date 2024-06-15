@@ -6,11 +6,13 @@ import { commonUiActions } from "./commonUiAction";
 const createOrder = (payload, navigate) => async (dispatch) => {
   try {
     dispatch({ type: types.CREATE_ORDER_REQUEST });
+    console.log("ccreateOrder", payload);
     const response = await api.post("/order", payload);
     if (response.status === 200) {
       // dispatch(commonUiActions.showToastMessage(`주문번호 : ${response.data.orderNum} 생성 성공~!`, "success"));
       dispatch({ type: types.CREATE_ORDER_SUCCESS, payload: response.data.orderNum });
       dispatch(cartActions.getCartQty());
+
       navigate("/payment/success");
     } else {
       throw new Error(response.error);

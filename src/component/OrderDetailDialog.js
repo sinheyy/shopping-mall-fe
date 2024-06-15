@@ -20,6 +20,7 @@ const OrderDetailDialog = ({ open, handleClose }) => {
     handleClose();
   };
 
+  console.log("셀레ㄱ디트동더", selectedOrder);
   if (!selectedOrder) {
     return <></>;
   }
@@ -73,6 +74,7 @@ const OrderDetailDialog = ({ open, handleClose }) => {
                 <td colSpan={4}>총계:</td>
                 <td><strong>{currencyFormat(selectedOrder.totalPrice)}</strong></td>
               </tr>
+              
             </tbody>
           </Table>
         </div>

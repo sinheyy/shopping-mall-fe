@@ -14,6 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { userActions } from "../action/userAction";
 import * as types from "../constants/product.constants";
 import { cartActions } from "../action/cartAction";
+import { orderActions } from "../action/orderAction";
 
 const Navbar = ({ user }) => {
   const dispatch = useDispatch();
@@ -53,6 +54,7 @@ const Navbar = ({ user }) => {
   const logout = () => {
     dispatch(userActions.logout());
     dispatch(cartActions.clearCart());
+    navigate("/");
   };
 
   const goToLogin = () => {
@@ -108,6 +110,14 @@ const Navbar = ({ user }) => {
 
         <div>
           <div className="display-flex">
+            {user ? (
+              <div className="nav-icon">
+                <span>{user?.name}님, 반갑습니다</span>
+              </div>
+            )
+              :
+              (<></>)
+            }
             {user ? (
               <div onClick={logout} className="nav-icon">
                 <FontAwesomeIcon icon={faUser} />

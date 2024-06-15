@@ -44,6 +44,7 @@ const OrderReceipt = ({ cartList, totalPrice, totalSalePrice, totalProductPrice 
           -{currencyFormat(totalSalePrice)} 원
         </div>
       </div>
+      
       <div className="display-flex space-between receipt-total">
         <div>
           총 결제 금액:

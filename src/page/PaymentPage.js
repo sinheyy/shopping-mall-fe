@@ -5,14 +5,15 @@ import PaymentForm from "../component/PaymentForm";
 import "../style/paymentPage.style.css";
 import { useSelector, useDispatch } from "react-redux";
 import { orderActions } from "../action/orderAction";
+import { cartActions } from "../action/cartAction";
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
 import { commonUiActions } from "../action/commonUiAction";
 import { cc_expires_format } from "../utils/number";
+import * as types from "../constants/order.constants";
 
 const PaymentPage = () => {
   const dispatch = useDispatch();
-
   const [cardValue, setCardValue] = useState({
     cvc: "",
     expiry: "",
@@ -35,6 +36,7 @@ const PaymentPage = () => {
 
   //맨처음 페이지 로딩할때는 넘어가고  오더번호를 받으면 성공페이지로 넘어가기
   console.log(cartList);
+
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log("handleSubmit - cartList", cartList);
@@ -56,7 +58,9 @@ const PaymentPage = () => {
       })
     }   // 백엔드로 보낼 데이터 정리
 
+    console.log("create오더 호출 전", data);
     dispatch(orderActions.createOrder(data, navigate));
+
   };
 
   const handleFormChange = (event) => {

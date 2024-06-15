@@ -35,6 +35,7 @@ function userReducer(state = initialState, action) {
 
     case types.REGISTER_USER_FAIL:
     case types.LOGIN_FAIL:
+    case types.PRODUCT_EDIT_FAIL:
       return {
         ...state,
         loading: false,

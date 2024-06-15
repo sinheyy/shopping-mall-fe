@@ -15,7 +15,10 @@ export const SET_FILTERED_LIST = "SET_FILTERED_LIST";
 export const CATEGORY = ["Top", "Dress", "Pants", "Living", "Bag", "Acc", "Shoes"];
 export const STATUS = ["active", "disactive"];
 export const CHOICE = ["true", "false"];
-export const SIZE = ["XS", "S", "M", "L", "XL"];
+export let SIZE = ["XS", "S", "M", "L", "XL"];
+export const updateSize = (newSize) => {
+    SIZE = newSize;
+}
 export const TOGGLE_ITEM_DIALOG = "TOGGLE_ITEM_DIALOG";
 export const SEARCH_PRODUCT_REQUEST = " SEARCH_PRODUCT_REQUEST";
 export const SEARCH_PRODUCT_SUCCESS = " SEARCH_PRODUCT_SUCCESS";
